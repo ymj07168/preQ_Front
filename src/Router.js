@@ -15,7 +15,7 @@ import NavBar from "./components/common/NavBar";
 const Router = () => {
     return (
         <BrowserRouter>
-            <NavBar />
+            {/* <NavBar /> */}
             <Routes>
                 <Route element={<HomePage />} path='/' exact />
                 <Route element={<CommunityPage />} path='/community' />
