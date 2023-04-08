@@ -20,7 +20,7 @@ const CardItemBox = styled.div`
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 600;
-        font-size: 30px;
+        font-size: 28px;
         line-height: 45px;
         color: #252525;
     }
@@ -30,13 +30,11 @@ const CardItemBox = styled.div`
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 400;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 36px;
         text-align: center;
-
-color: #9D9D9D;
+        color: #9D9D9D;
     }
-
 `
 
 function CardItem(props) {

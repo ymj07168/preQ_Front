@@ -9,16 +9,11 @@ const SectionContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 200px;
+    margin-top : 150px;
     margin-right: auto;
     margin-left: auto;
-    padding-left: 150px;
-    padding-right: 150px;
-    .mainblock{
-        display: flex;
+    .main-block{
         width: 1200px;
-        justify-content: center;
-        align-items: center;
     }
     .title{
         display: flex;
@@ -36,7 +31,7 @@ const SectionContainer = styled.div`
         justify-content: center;
         align-items: center;
         gap: 10px;
-        margin-top: 50px;
+        margin-top: 70px;
         width: 1200px;
         height: 325px;
         background: #FFFFFF;

@@ -5,21 +5,20 @@ import styled from 'styled-components';
 import logo from '../../asset/logo.png';
 
 const NavContainer = styled.div`
-    padding-top: 30px;
+    padding-top: 40px;
     background: #DBE9F1;
 `
 
 const NavBlock = styled.div`
-    height : 4rem;
+    height : 4.5rem;
     display: fixed;
     z-index : 1000;
-    top : 30px;
     min-width: 800px;
     margin-left: 150px;
     margin-right: 150px;
     align-items : center;
     background : #ffffff;
-    border-radius: 30px;
+    border-radius: 40px;
     .logo {
         margin-left: 30px;
         height: 60px;
