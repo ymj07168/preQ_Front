@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import background from "../asset/background.png";
 import SubSection from "../components/home/SubSection";
 import HeroSection from "../components/home/HeroSection";
+import Footer from "../components/home/Footer";
 
 const HomeBlock = styled.div`
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 1050px;
+    height: 900px;
     background-image: url(${background});
     backgorund-repeat: 'no-repeat';
     background-position: top center;
@@ -24,6 +25,7 @@ const HomePage = () => {
                 <NavBar />
                 <HeroSection />
                 <SubSection />
+                <Footer />
             </HomeBlock>
 
         </>
