@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import mainImg from "../../asset/mainImg.png";
 
-const HeaderContainer = styled.div`
+const HeroContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,9 +60,9 @@ const HeaderContainer = styled.div`
 `
 
 
-const Header = () => {
+const HeroSection = () => {
     return (
-        <HeaderContainer>
+        <HeroContainer>
             <div className="mainblock">
                 <div className="textblock">
                     <div className="title">프리큐와 함께<br />면접 준비 시작하세요!</div>
@@ -73,8 +73,8 @@ const Header = () => {
                 </div>
                 <img src={mainImg} alt="사진을 불러올 수 없음" />
             </div>
-        </HeaderContainer>
+        </HeroContainer>
     );
 };
 
-export default Header;
+export default HeroSection;
