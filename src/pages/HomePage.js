@@ -1,8 +1,9 @@
 import React from "react";
-import Header from "../components/common/Header";
 import NavBar from "../components/common/NavBar";
 import styled from 'styled-components';
 import background from "../asset/background.png";
+import SubSection from "../components/home/SubSection";
+import HeroSection from "../components/home/HeroSection";
 
 const HomeBlock = styled.div`
     position: absolute;
@@ -21,7 +22,8 @@ const HomePage = () => {
         <>
             <HomeBlock>
                 <NavBar />
-                <Header />
+                <HeroSection />
+                <SubSection />
             </HomeBlock>
 
         </>
