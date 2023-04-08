@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import logo from '../../asset/logo.png';
 
-const TopBlock = styled.div`
+const NavContainer = styled.div`
     padding-top: 30px;
     background: #DBE9F1;
 `
@@ -14,9 +14,9 @@ const NavBlock = styled.div`
     display: fixed;
     z-index : 1000;
     top : 30px;
-    // margin-top : 30px;
-    margin-left: 100px;
-    margin-right: 100px;
+    min-width: 800px;
+    margin-left: 150px;
+    margin-right: 150px;
     align-items : center;
     background : #ffffff;
     border-radius: 30px;
@@ -48,7 +48,7 @@ const LinkTo = styled(Link)`
 const NavBar = () => {
     return (
         <>
-            <TopBlock>
+            <NavContainer>
                 <NavBlock>
                     <img className='logo' src={logo} alt='사진을 불러올 수 없음' />
                     <Menu>
@@ -59,7 +59,7 @@ const NavBar = () => {
                         <LinkTo to='/service'>질문예측서비스</LinkTo>
                     </Menu >
                 </NavBlock>
-            </TopBlock>
+            </NavContainer>
         </>
 
     )
