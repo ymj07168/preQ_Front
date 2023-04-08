@@ -10,12 +10,10 @@ import MyPage from "./pages/MyPage";
 import LoginPage from "./pages/LoginPage";
 import ServicePage from "./pages/ServicePage";
 
-import NavBar from "./components/common/NavBar";
 
 const Router = () => {
     return (
         <BrowserRouter>
-            {/* <NavBar /> */}
             <Routes>
                 <Route element={<HomePage />} path='/' exact />
                 <Route element={<CommunityPage />} path='/community' />
