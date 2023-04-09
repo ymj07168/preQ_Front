@@ -11,7 +11,7 @@ const HomeBlock = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    height: 800px;
+    height: 850px;
     background-image: url(${background});
     backgorund-repeat: 'no-repeat';
     background-position: top center;
