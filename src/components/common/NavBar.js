@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import logo from '../../asset/logo.png';
 
 const NavContainer = styled.div`
@@ -28,6 +27,19 @@ const NavBlock = styled.div`
 const Menu = styled.div`
     margin-left: auto;
     margin-right: 30px;
+    .service-button{
+        margin-left: 30px;
+        width: 200px;
+        height: 45px;
+        background: #0D2D84;
+        border-radius: 50px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 30px;
+        color: #FFFFFF;
+    }
 `
 
 const LinkTo = styled(Link)`
@@ -43,7 +55,6 @@ const LinkTo = styled(Link)`
 `
 
 
-
 const NavBar = () => {
     return (
         <>
@@ -55,7 +66,8 @@ const NavBar = () => {
                         <LinkTo to='/community'>커뮤니티</LinkTo>
                         <LinkTo to='/mypage'>마이페이지</LinkTo>
                         <LinkTo to='/login'>로그인</LinkTo>
-                        <LinkTo to='/service'>질문예측서비스</LinkTo>
+                        <button className='service-button'>질문예측서비스</button>
+                        {/* <LinkTo to='/service'>질문예측서비스</LinkTo> */}
                     </Menu >
                 </NavBlock>
             </NavContainer>
