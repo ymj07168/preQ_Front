@@ -1,0 +1,38 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 600px;
+}
+
+.login-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 65px;
+    line-height: 98px;
+    text-align: center;
+    color: #252525;
+}
+
+.login-btns {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.login-subtext {
+    display: flex;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: #252525;
+    opacity: 0.6;
+}

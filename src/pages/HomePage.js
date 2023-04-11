@@ -1,33 +1,20 @@
 import React from "react";
 import NavBar from "../components/common/NavBar";
-import styled from 'styled-components';
-import background from "../asset/background.png";
 import SubSection from "../components/home/SubSection";
 import HeroSection from "../components/home/HeroSection";
 import Footer from "../components/common/Footer";
+import TopContainer from "../components/common/TopContainer";
 
-const HomeBlock = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 850px;
-    background-image: url(${background});
-    backgorund-repeat: 'no-repeat';
-    background-position: top center;
-    background-size: cover;
-`
 
 const HomePage = () => {
     return (
         <>
-            <HomeBlock>
+            <TopContainer>
                 <NavBar />
                 <HeroSection />
                 <SubSection />
                 <Footer />
-            </HomeBlock>
-
+            </TopContainer >
         </>
     )
 }

@@ -46,6 +46,7 @@ const LinkTo = styled(Link)`
     text-decoration: none;
     color: #252525;
     font-size: 15px;
+    font-weight: 500;
     margin-right : 20px;
     margin-left : 20px;
   &:hover{
@@ -62,12 +63,11 @@ const NavBar = () => {
                 <NavBlock>
                     <img className='logo' src={logo} alt='사진을 불러올 수 없음' />
                     <Menu>
-                        <LinkTo to='/' >Home</LinkTo>
+                        <LinkTo to='/'>Home</LinkTo>
                         <LinkTo to='/community'>커뮤니티</LinkTo>
                         <LinkTo to='/mypage'>마이페이지</LinkTo>
                         <LinkTo to='/login'>로그인</LinkTo>
                         <button className='service-button'>질문예측서비스</button>
-                        {/* <LinkTo to='/service'>질문예측서비스</LinkTo> */}
                     </Menu >
                 </NavBlock>
             </NavContainer>
