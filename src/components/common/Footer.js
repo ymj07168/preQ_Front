@@ -27,6 +27,7 @@ const FooterContainer = styled.div`
         width: 160px;
     }
     .contact{
+        right: 0;
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
