@@ -5,8 +5,9 @@ import styled from "styled-components";
 import LoginButton from "../components/common/LoginButton";
 import GoogleIcon from '../asset/google-icon.png';
 import KaKaoIcon from '../asset/kakao-icon.png';
+import Footer from "../components/common/Footer";
 
-const HomeBlock = styled.div`
+const LoginBlock = styled.div`
     position: absolute;
     top: 0;
     left: 0;
@@ -21,9 +22,10 @@ const HomeBlock = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top : 80px;
+        margin-bottom: 200px;
         margin-right: auto;
         margin-left: auto;
+        height: 600px;
     }
     .login-text{
         font-family: 'Poppins';
@@ -55,7 +57,7 @@ const HomeBlock = styled.div`
 const LoginPage = () => {
     return (
         <>
-            <HomeBlock>
+            <LoginBlock>
                 <NavBar />
                 <div className="login-container">
                     <div className="login-text">
@@ -78,7 +80,8 @@ const LoginPage = () => {
                         ✽ 계정이 없으면 회원가입이 진행됩니다
                     </div>
                 </div>
-            </HomeBlock>
+                <Footer />
+            </LoginBlock>
         </>
     )
 }
