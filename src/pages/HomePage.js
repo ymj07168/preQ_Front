@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import background from "../asset/background.png";
 import SubSection from "../components/home/SubSection";
 import HeroSection from "../components/home/HeroSection";
-import Footer from "../components/home/Footer";
+import Footer from "../components/common/Footer";
 
 const HomeBlock = styled.div`
     position: absolute;
