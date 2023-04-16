@@ -67,7 +67,8 @@ const NavBar = () => {
                         <LinkTo to='/community'>커뮤니티</LinkTo>
                         <LinkTo to='/mypage'>마이페이지</LinkTo>
                         <LinkTo to='/login'>로그인</LinkTo>
-                        <button className='service-button'>질문예측서비스</button>
+                        <Link to='/service'>
+                            <button className='service-button'>질문예측서비스</button></Link>
                     </Menu >
                 </NavBlock>
             </NavContainer>
