@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const ItemBox = styled.button`
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -10,7 +9,7 @@ const ItemBox = styled.button`
     box-sizing: border-box;
     border: none;
     width: 187px;
-    height: 60px;
+    height: 50px;
     background: #F9F8F8;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
