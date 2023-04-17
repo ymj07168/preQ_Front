@@ -6,6 +6,8 @@ import QuestionList from "../components/service/QuestionList";
 import InputForm from "../components/service/InputForm";
 import Footer from "../components/common/Footer"
 import exImg from "../asset/example.png";
+import AnswerList from "../components/service/AnswerList";
+import Chart from "../components/service/Chart";
 
 const ServiceContainer = styled.div`
     display: flex;
@@ -15,7 +17,7 @@ const ServiceContainer = styled.div`
     margin-right: auto;
     margin-left: auto;
     gap: 40px;
-    .result-box{
+    .pre-box{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -33,6 +35,11 @@ const ServiceContainer = styled.div`
         text-align: center;
         color: rgba(37, 37, 37, 0.67);
     }
+    .result-box{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 `
 
 const ServicePage = () => {
@@ -43,12 +50,16 @@ const ServicePage = () => {
                 <ServiceContainer>
                     <QuestionList />
                     <InputForm />
-                    <div className="result-box">
+                    {/* <div className="pre-box">
                         <img src={exImg} alt="준비이미지" width="450px" />
                         <div className="pre-text">
                             지원서 문항과 답변을 넣고 <br />
                             예상 면접 질문을 생성해보세요!
                         </div>
+                    </div> */}
+                    <div className="result-box">
+                        <Chart />
+                        <AnswerList />
                     </div>
                 </ServiceContainer>
                 <Footer />
