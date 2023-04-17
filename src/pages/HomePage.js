@@ -9,7 +9,7 @@ import TopContainer from "../components/common/TopContainer";
 const HomePage = () => {
     return (
         <>
-            <TopContainer>
+            <TopContainer color="white" image="blue">
                 <NavBar />
                 <HeroSection />
                 <SubSection />

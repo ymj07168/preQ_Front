@@ -11,7 +11,7 @@ import TopContainer from "../components/common/TopContainer";
 const LoginPage = () => {
     return (
         <>
-            <TopContainer>
+            <TopContainer color="white" image="blue">
                 <NavBar />
                 <div className="login-container">
                     <div className="login-text">

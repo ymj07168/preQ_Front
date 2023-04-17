@@ -6,7 +6,7 @@ const HeroContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top : 70px;
+    margin-top : 30px;
     margin-right: auto;
     margin-left: auto;
     .mainblock{

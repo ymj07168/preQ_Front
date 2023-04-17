@@ -5,6 +5,7 @@ import logo from '../../asset/logo.png';
 
 const NavContainer = styled.div`
     padding-top: 40px;
+    padding-bottom: 40px;
     background: #DBE9F1;
 `
 

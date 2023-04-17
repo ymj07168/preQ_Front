@@ -4,21 +4,25 @@ import TopContainer from "../components/common/TopContainer";
 import styled from "styled-components";
 import QuestionList from "../components/service/QuestionList";
 import InputForm from "../components/service/InputForm";
+import Footer from "../components/common/Footer"
 
 const ServiceContainer = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: row;
+    margin-top: 50px;
     margin-right: auto;
     margin-left: auto;
-    gap: 20px;
+    gap: 40px;
+    .result_box{
+        width: 500px;
+    }
 `
 
 const ServicePage = () => {
     return (
         <>
-            <TopContainer>
+            <TopContainer color="blue" image="white">
                 <NavBar />
                 <ServiceContainer>
                     <QuestionList />
@@ -27,6 +31,7 @@ const ServicePage = () => {
                         결과 박스
                     </div>
                 </ServiceContainer>
+                <Footer />
             </TopContainer >
         </>
     )
