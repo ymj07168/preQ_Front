@@ -26,7 +26,7 @@ const MyPage = () => {
 
     return (
         <>
-            <TopContainer>
+            <TopContainer color="white" image="blue">
                 <NavBar />
                 <div className="profile-block">
                     <img src={profileImg} width="220px" alt="프로필이미지" />
