@@ -25,17 +25,37 @@ const InputTitle = styled.div`
     color: #000000;
 `
 
-const InputBox = styled.input`
+const InputBox = styled.textarea`
     box-sizing: border-box;
     width: 600px;
     height: ${props => props.kind === 'Q' ? '50px' : '650px'};
-    left: 255px;
-    top: 124px;
     background: #F9F8F8;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     border: none;
+    word-break:break-all;
+    resize: none;
+    padding: 12px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000000;
 `
+
+// const InputAnswer = styled.textarea`
+//     box-sizing: border-box;
+//     width: 600px;
+//     height: 650px;
+//     background: #F9F8F8;
+//     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
+//     border-radius: 8px;
+//     border: none;
+//     word-break:break-all;
+//     resize: none;
+// `
 
 const SubmitBtn = styled.button`
     width: 195px;
@@ -60,6 +80,7 @@ const InputForm = () => {
                 <br /><br />
                 <InputTitle>Enter Answer</InputTitle>
                 <InputBox kind="A" />
+                {/* <InputAnswer /> */}
                 <br />
                 <div className="submit-button">
                     <SubmitBtn>Generate</SubmitBtn>
