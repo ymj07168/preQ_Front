@@ -5,18 +5,14 @@ import plusImg from "../../asset/plus.png";
 
 const ListBox = styled.div`
     display: flex;
-    justify-content: center;
+    align-items: flex-center;
     flex-direction: column;
-    .question_list{
-        display: flex;
-        flex-direction: column;
-    }
     .question-list-title{
         display: flex;
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 600;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 36px;
         color: #000000;   
         margin-bottom: 10px;
@@ -35,12 +31,10 @@ const QuestionList = () => {
     return (
         <>
             <ListBox>
-                <div className="question_list">
-                    <div className="question-list-title">
-                        Question List
-                    </div>
-                    <QuestionItem title="untitled" />
+                <div className="question-list-title">
+                    Question List
                 </div>
+                <QuestionItem title="untitled" />
                 <br />
                 <button className="plus-button">
                     <img src={plusImg} alt="질문추가버튼" />

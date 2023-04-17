@@ -8,7 +8,7 @@ const ItemBox = styled.button`
 
     box-sizing: border-box;
     border: none;
-    width: 187px;
+    width: 200px;
     height: 50px;
     background: #F9F8F8;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);

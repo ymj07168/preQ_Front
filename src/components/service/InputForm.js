@@ -5,8 +5,14 @@ import styled from "styled-components";
 const InputWrapper = styled.div`
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     flex-direction: column;
+    .submit-button{
+        display:flex;
+        width: 600px;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
 `
 
 const InputTitle = styled.div`
@@ -21,8 +27,8 @@ const InputTitle = styled.div`
 
 const InputBox = styled.input`
     box-sizing: border-box;
-    width: 500px;
-    height: ${props => props.kind === 'Q' ? '50px' : '600px'};
+    width: 600px;
+    height: ${props => props.kind === 'Q' ? '50px' : '650px'};
     left: 255px;
     top: 124px;
     background: #F9F8F8;
@@ -39,7 +45,7 @@ const SubmitBtn = styled.button`
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 30px; 
     text-align: center;
     color: #FFFFFF;
@@ -51,11 +57,13 @@ const InputForm = () => {
             <InputWrapper>
                 <InputTitle>Enter Question</InputTitle>
                 <InputBox kind="Q" />
-                <br />
+                <br /><br />
                 <InputTitle>Enter Answer</InputTitle>
                 <InputBox kind="A" />
                 <br />
-                <SubmitBtn>Generate</SubmitBtn>
+                <div className="submit-button">
+                    <SubmitBtn>Generate</SubmitBtn>
+                </div>
             </InputWrapper>
         </>
     )
