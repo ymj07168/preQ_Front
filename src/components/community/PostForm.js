@@ -32,7 +32,13 @@ const PostFormBox = styled.div`
 `
 
 
-const PostForm = () => {
+const PostForm = ({ isClick }) => {
+
+    const onClick = () => {
+        // 게시글 전체 조회 뷰 이동
+        isClick(false)
+    }
+
     return (
         <>
             <PostFormBox>
@@ -47,7 +53,7 @@ const PostForm = () => {
                 <InputBox width="700px" height="500px" />
                 <div className="btn-box">
                     <StyleButton width="140px" height="50px" size="20px">취소</StyleButton>
-                    <StyleButton width="140px" height="50px" size="20px">등록</StyleButton>
+                    <StyleButton width="140px" height="50px" size="20px" onClick={onClick}>등록</StyleButton>
                 </div>
             </PostFormBox>
         </>

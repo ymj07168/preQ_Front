@@ -4,7 +4,6 @@ import wrtieBtnImg from "../../asset/writebtnImg.png";
 import SearchBox from "./SearchBox";
 import PostItem from "./PostItem";
 import dummy from "../../db/data.json";
-import { useState } from "react";
 
 
 const BoardWrapper = styled.div`
@@ -64,20 +63,10 @@ const WriteBtn = styled.div`
 
 const BoardBox = ({ isClick }) => {
 
-    const [click, setClick] = useState(false)
-
     const onClick = () => {
-        // 결과 조회
-        if (click === false) {
-            setClick(true);
-        }
-        // 입력 전 페이지
-        if (click === true) {
-            setClick(false);
-        }
+        // 글 작성 뷰 이동
+        isClick(true)
     }
-
-    isClick(click)
 
     return (
         <>
