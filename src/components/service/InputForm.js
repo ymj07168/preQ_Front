@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import InputBox from "../common/InputBox";
+import StyleButton from "../common/StyleButton";
 
 
 const InputWrapper = styled.div`
@@ -24,20 +25,6 @@ const InputTitle = styled.div`
     font-size: 25px;
     line-height: 48px; 
     color: #000000;
-`
-
-const SubmitBtn = styled.button`
-    width: 195px;
-    height: 53px;
-    background: #0D2D84;
-    border-radius: 10px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 30px; 
-    text-align: center;
-    color: #FFFFFF;
 `
 
 const InputForm = ({ isClick }) => {
@@ -68,7 +55,7 @@ const InputForm = ({ isClick }) => {
                 {/* <InputAnswer /> */}
                 <br />
                 <div className="submit-button">
-                    <SubmitBtn onClick={onClick}>Generate</SubmitBtn>
+                    <StyleButton width="195px" height="53px" size="22px" onClick={onClick}>Generate</StyleButton>
                 </div>
             </InputWrapper>
         </>

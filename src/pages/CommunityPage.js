@@ -48,7 +48,7 @@ const CommunityPage = () => {
                     </div>
                     <div className="board-center">
                         {click ?
-                            <PostForm />
+                            <PostForm isClick={isClick} />
                             :
                             <BoardBox isClick={isClick} />
                         }
