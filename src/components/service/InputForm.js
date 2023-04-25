@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import InputBox from "../common/InputBox";
 
 
 const InputWrapper = styled.div`
@@ -25,38 +26,6 @@ const InputTitle = styled.div`
     color: #000000;
 `
 
-const InputBox = styled.textarea`
-    box-sizing: border-box;
-    width: 600px;
-    height: ${props => props.kind === 'Q' ? '50px' : '650px'};
-    background: #F9F8F8;
-    box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    border: none;
-    word-break:break-all;
-    resize: none;
-    padding: 12px;
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 25px;
-    color: #000000;
-`
-
-// const InputAnswer = styled.textarea`
-//     box-sizing: border-box;
-//     width: 600px;
-//     height: 650px;
-//     background: #F9F8F8;
-//     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
-//     border-radius: 8px;
-//     border: none;
-//     word-break:break-all;
-//     resize: none;
-// `
-
 const SubmitBtn = styled.button`
     width: 195px;
     height: 53px;
@@ -72,7 +41,7 @@ const SubmitBtn = styled.button`
 `
 
 const InputForm = ({ isClick }) => {
-    
+
     const [click, setClick] = useState(false)
 
     const onClick = () => {
@@ -92,10 +61,10 @@ const InputForm = ({ isClick }) => {
         <>
             <InputWrapper>
                 <InputTitle>Enter Question</InputTitle>
-                <InputBox kind="Q" />
+                <InputBox width="600px" height='50px' />
                 <br /><br />
                 <InputTitle>Enter Answer</InputTitle>
-                <InputBox kind="A" />
+                <InputBox width="600px" height="640px" />
                 {/* <InputAnswer /> */}
                 <br />
                 <div className="submit-button">

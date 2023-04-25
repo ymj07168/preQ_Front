@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import WriteButton from "./WriteButton";
+import wrtieBtnImg from "../../asset/writebtnImg.png";
 import SearchBox from "./SearchBox";
 import PostItem from "./PostItem";
 import dummy from "../../db/data.json";
+import { useState } from "react";
 
 
 const BoardWrapper = styled.div`
@@ -44,13 +45,49 @@ const PostList = styled.div`
     gap: 12px;
 `
 
-const BoardBox = () => {
+const WriteBtn = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 130px;
+    height: 44px;
+    background: #0D2D84;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+`
+
+const BoardBox = ({ isClick }) => {
+
+    const [click, setClick] = useState(false)
+
+    const onClick = () => {
+        // 결과 조회
+        if (click === false) {
+            setClick(true);
+        }
+        // 입력 전 페이지
+        if (click === true) {
+            setClick(false);
+        }
+    }
+
+    isClick(click)
 
     return (
         <>
             <BoardWrapper>
                 <BoardTop>
-                    <WriteButton />
+
+                    <WriteBtn onClick={onClick}>
+                        <img src={wrtieBtnImg} alt="작성하기버튼" />
+                        <div className="write-btn-text">작성버튼</div>
+                    </WriteBtn>
                     <SearchBox />
                     <FilterBox>
                         <option value="newest">최신순</option>
