@@ -5,9 +5,10 @@ import styled from "styled-components";
 import QuestionList from "../components/service/QuestionList";
 import InputForm from "../components/service/InputForm";
 import Footer from "../components/common/Footer"
-// import exImg from "../asset/example.png";
+import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
+import { useState } from "react";
 
 const ServiceContainer = styled.div`
     display: flex;
@@ -43,24 +44,36 @@ const ServiceContainer = styled.div`
 `
 
 const ServicePage = () => {
+
+    const [click, setClick] = useState(false);
+
+    const isClick = (x) => {
+        setClick(x)
+    }
+
     return (
         <>
             <TopContainer color="blue" image="white">
                 <NavBar />
                 <ServiceContainer>
                     <QuestionList />
-                    <InputForm />
-                    {/* <div className="pre-box">
+                    <InputForm isClick={isClick} />
+                    {click ? <div className="pre-box">
                         <img src={exImg} alt="준비이미지" width="450px" />
                         <div className="pre-text">
                             지원서 문항과 답변을 넣고 <br />
                             예상 면접 질문을 생성해보세요!
                         </div>
-                    </div> */}
-                    <div className="result-box">
+                    </div> :
+                        <div className="result-box">
+                            <Chart />
+                            <AnswerList />
+                        </div>
+                    }
+                    {/* <div className="result-box">
                         <Chart />
                         <AnswerList />
-                    </div>
+                    </div> */}
                 </ServiceContainer>
                 <Footer />
             </TopContainer>

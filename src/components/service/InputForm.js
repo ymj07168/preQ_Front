@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 
@@ -71,7 +71,23 @@ const SubmitBtn = styled.button`
     color: #FFFFFF;
 `
 
-const InputForm = () => {
+const InputForm = ({ isClick }) => {
+    
+    const [click, setClick] = useState(false)
+
+    const onClick = () => {
+        // 결과 조회
+        if (click === false) {
+            setClick(true);
+        }
+        // 입력 전 페이지
+        if (click === true) {
+            setClick(false);
+        }
+    }
+
+    isClick(click)
+
     return (
         <>
             <InputWrapper>
@@ -83,7 +99,7 @@ const InputForm = () => {
                 {/* <InputAnswer /> */}
                 <br />
                 <div className="submit-button">
-                    <SubmitBtn>Generate</SubmitBtn>
+                    <SubmitBtn onClick={onClick}>Generate</SubmitBtn>
                 </div>
             </InputWrapper>
         </>
