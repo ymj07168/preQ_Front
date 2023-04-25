@@ -3,6 +3,7 @@ import NavBar from "../components/common/NavBar";
 import TopContainer from "../components/common/TopContainer";
 import styled from "styled-components";
 import BoardBox from "../components/community/BoardBox";
+import Footer from "../components/common/Footer";
 
 const BoardContainer = styled.div`
     display: flex;
@@ -40,6 +41,7 @@ const CommunityPage = () => {
                         </div>
                     </div>
                 </BoardContainer>
+                <Footer />
             </TopContainer>
         </>
     )

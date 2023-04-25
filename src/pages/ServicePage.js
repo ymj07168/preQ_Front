@@ -5,7 +5,7 @@ import styled from "styled-components";
 import QuestionList from "../components/service/QuestionList";
 import InputForm from "../components/service/InputForm";
 import Footer from "../components/common/Footer"
-import exImg from "../asset/example.png";
+// import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 
@@ -63,7 +63,7 @@ const ServicePage = () => {
                     </div>
                 </ServiceContainer>
                 <Footer />
-            </TopContainer >
+            </TopContainer>
         </>
     )
 }
