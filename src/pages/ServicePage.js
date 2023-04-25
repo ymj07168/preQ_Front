@@ -39,6 +39,8 @@ const ServiceContainer = styled.div`
     .result-box{
         display: flex;
         flex-direction: column;
+        justify-content : center;
+        align-items: center;
         gap: 20px;
     }
 `
@@ -58,22 +60,19 @@ const ServicePage = () => {
                 <ServiceContainer>
                     <QuestionList />
                     <InputForm isClick={isClick} />
-                    {click ? <div className="pre-box">
-                        <img src={exImg} alt="준비이미지" width="450px" />
-                        <div className="pre-text">
-                            지원서 문항과 답변을 넣고 <br />
-                            예상 면접 질문을 생성해보세요!
-                        </div>
-                    </div> :
+                    {click ?
                         <div className="result-box">
                             <Chart />
                             <AnswerList />
+                        </div> :
+                        <div className="pre-box">
+                            <img src={exImg} alt="준비이미지" width="450px" />
+                            <div className="pre-text">
+                                지원서 문항과 답변을 넣고 <br />
+                                예상 면접 질문을 생성해보세요!
+                            </div>
                         </div>
                     }
-                    {/* <div className="result-box">
-                        <Chart />
-                        <AnswerList />
-                    </div> */}
                 </ServiceContainer>
                 <Footer />
             </TopContainer>

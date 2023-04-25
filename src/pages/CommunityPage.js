@@ -4,6 +4,8 @@ import TopContainer from "../components/common/TopContainer";
 import styled from "styled-components";
 import BoardBox from "../components/community/BoardBox";
 import Footer from "../components/common/Footer";
+import { useState } from "react";
+import PostForm from "../components/community/PostForm";
 
 const BoardContainer = styled.div`
     display: flex;
@@ -19,12 +21,23 @@ const BoardContainer = styled.div`
         line-height: 45px;
         margin-left: 170px;
         color: #0D2D84;
-        margin-bottom: 100px;
+        margin-bottom: 80px;
+    }
+    .board-center{
+        display: flex;
+        justify-content : center;
+        align-items: center;
     }
 `
 
-
 const CommunityPage = () => {
+
+    const [click, setClick] = useState(false);
+
+    const isClick = (x) => {
+        setClick(x)
+    }
+
     return (
         <>
             <TopContainer color="white" image="blue">
@@ -33,7 +46,13 @@ const CommunityPage = () => {
                     <div className="board-intro">
                         면접 팁과 후기를 자유롭게 공유해봐요
                     </div>
-                    <BoardBox />
+                    <div className="board-center">
+                        {click ?
+                            <PostForm />
+                            :
+                            <BoardBox isClick={isClick} />
+                        }
+                    </div>
                     <div className="board-footer">
                         <div className="pagination">
                             페이지링크
