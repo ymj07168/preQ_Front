@@ -34,7 +34,6 @@ const CommunityPage = () => {
                         면접 팁과 후기를 자유롭게 공유해봐요
                     </div>
                     <BoardBox />
-
                     <div className="board-footer">
                         <div className="pagination">
                             페이지링크

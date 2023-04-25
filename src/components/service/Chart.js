@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import barChart from "../../asset/Section.png";
-import pieChart from "../../asset/graph2.png";
+// import barChart from "../../asset/Section.png";
+// import pieChart from "../../asset/graph2.png";
+import Barchart from "./BarChart";
 
 const ChartBox = styled.div`
     display: flex;
@@ -28,8 +29,10 @@ const Chart = () => {
                 지원자님은 긍정적 마인드가 돋보여요!
             </div>
             <div className="plot-box">
-                <img src={barChart} alt="막대차트" width="250px" />
-                <img src={pieChart} alt="원형차트" width="250px" />
+                <Barchart />
+                {/* <Piechart /> */}
+                {/* <img src={barChart} alt="막대차트" width="250px" /> */}
+                {/* <img src={pieChart} alt="원형차트" width="250px" /> */}
             </div>
         </ChartBox>
     )
