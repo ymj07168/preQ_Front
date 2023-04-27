@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import StyleButton from "../common/StyleButton";
+import { Modal } from "../common/Modal";
+import { useState } from "react";
 
 const PostItemBox = styled.div`
     // box-sizing: border-box;
@@ -72,18 +74,32 @@ const RightWrapper = styled.div`
 
 const PostItem = (props) => {
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModalHandler = () => {
+        // isOpen의 상태를 변경하는 메소드를 구현
+        // !false -> !true -> !false
+        setIsOpen(!isOpen)
+    };
+
     return (
-        <PostItemBox >
-            <LeftWrapper>
-                <div className="user">{props.user}</div>
-                <div className="title">{props.title}</div>
-                <div className="date">{props.date}</div>
-            </LeftWrapper>
-            <RightWrapper>
-                <div className="view">조회수: {props.view}</div>
-                {props.isHover ? <div className="btn-group"><StyleButton width="70px" height="45px" size="15px">수정</StyleButton><StyleButton width="70px" height="45px" size="15px">삭제</StyleButton></div> : <div></div>}
-            </RightWrapper>
-        </PostItemBox >
+        <>
+            <PostItemBox >
+                <LeftWrapper>
+                    <div className="user">{props.user}</div>
+                    <div className="title">{props.title}</div>
+                    <div className="date">{props.date}</div>
+                </LeftWrapper>
+                <RightWrapper>
+                    <div className="view">조회수: {props.view}</div>
+                    {props.isHover ? <div className="btn-group"><StyleButton width="70px" height="45px" size="15px">수정</StyleButton><StyleButton width="70px" height="45px" size="15px" onClick={openModalHandler}>삭제</StyleButton></div> : <div></div>}
+                </RightWrapper>
+            </PostItemBox >
+            {isOpen ?
+                <Modal openModalHandler={openModalHandler} />
+                : null
+            }
+        </>
     )
 }
 
