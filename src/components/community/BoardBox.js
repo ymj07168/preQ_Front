@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import wrtieBtnImg from "../../asset/writebtnImg.png";
 import SearchBox from "./SearchBox";
@@ -63,9 +63,16 @@ const WriteBtn = styled.div`
 
 const BoardBox = ({ isClick }) => {
 
+    const [isHover, setHover] = useState('');
+
     const onClick = () => {
         // 글 작성 뷰 이동
         isClick(true)
+    }
+
+    const onMouseEnter = (x) => {
+        console.log(x)
+        setHover(x)
     }
 
     return (
@@ -85,12 +92,16 @@ const BoardBox = ({ isClick }) => {
                 </BoardTop >
                 <PostList>
                     {dummy.boarder.map(item => (
-                        <PostItem
-                            user={item.user}
-                            title={item.title}
-                            date={item.date}
-                            view={item.view}
-                        />
+                        <div onMouseEnter={() => { onMouseEnter(item.id) }}>
+                            <PostItem
+                                key={item.id}
+                                user={item.user}
+                                title={item.title}
+                                date={item.date}
+                                view={item.view}
+                                isHover={isHover === item.id}
+                            />
+                        </div>
                     ))}
                 </PostList>
             </BoardWrapper>
