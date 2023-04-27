@@ -17,19 +17,24 @@ const ItemBox = styled.button`
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 30px;
-
-    padding: 20px;
-
+    padding: 10px;
+    margin-bottom: 18px;
     color: rgba(0, 0, 0, 0.7);
 `
 
 const QuestionItem = (props) => {
+
+    var title = props.title
+
+    if (title !== null) {
+        var titleStr = title.substr(0, 13) + "..."
+    }
     return (
         <>
             <ItemBox>
-                {props.title}
+                {titleStr}
             </ItemBox>
         </>
     )

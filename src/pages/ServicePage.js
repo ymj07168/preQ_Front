@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../components/common/NavBar";
 import TopContainer from "../components/common/TopContainer";
 import styled from "styled-components";
@@ -53,13 +53,22 @@ const ServicePage = () => {
         setClick(x)
     }
 
+    const [formId, setFormId] = useState(1)
+
+    const onHandleForm = (x) => {
+        setFormId(x)
+    }
+
+    useEffect(() => {
+    }, [formId])
+
     return (
         <>
             <TopContainer color="blue" image="white">
                 <NavBar />
                 <ServiceContainer>
-                    <QuestionList />
-                    <InputForm isClick={isClick} />
+                    <QuestionList onHandleForm={onHandleForm} />
+                    <InputForm isClick={isClick} formId={formId} />
                     {click ?
                         <div className="result-box">
                             <Chart />

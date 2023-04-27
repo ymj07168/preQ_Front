@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputBox from "../common/InputBox";
 import StyleButton from "../common/StyleButton";
+import dummy from "../../db/data.json";
 
 
 const InputWrapper = styled.div`
@@ -27,32 +28,33 @@ const InputTitle = styled.div`
     color: #000000;
 `
 
-const InputForm = ({ isClick }) => {
+const InputForm = ({ isClick, formId }) => {
 
     const [click, setClick] = useState(false)
 
     const onClick = () => {
-        // 결과 조회
-        if (click === false) {
-            setClick(true);
-        }
-        // 입력 전 페이지
-        if (click === true) {
-            setClick(false);
-        }
+        setClick(!click)
     }
 
-    isClick(click)
+    const [data, setData] = useState()
+
+
+    useEffect(() => {
+        isClick(click)
+        setData(dummy.question[formId - 1])
+        console.log(formId)
+    }, [formId, data, click, isClick])
+
+
 
     return (
         <>
             <InputWrapper>
                 <InputTitle>Enter Question</InputTitle>
-                <InputBox width="600px" height='50px' />
+                <InputBox width="600px" height='50px' value={formId !== null ? data?.title : ""} />
                 <br /><br />
                 <InputTitle>Enter Answer</InputTitle>
-                <InputBox width="600px" height="640px" />
-                {/* <InputAnswer /> */}
+                <InputBox width="600px" height="640px" value={formId !== null ? data?.content : ""} />
                 <br />
                 <div className="submit-button">
                     <StyleButton width="195px" height="53px" size="22px" onClick={onClick}>Generate</StyleButton>
