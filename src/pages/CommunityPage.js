@@ -53,11 +53,7 @@ const CommunityPage = () => {
                             <BoardBox isClick={isClick} />
                         }
                     </div>
-                    <div className="board-footer">
-                        <div className="pagination">
-                            페이지링크
-                        </div>
-                    </div>
+
                 </BoardContainer>
                 <Footer />
             </TopContainer>
