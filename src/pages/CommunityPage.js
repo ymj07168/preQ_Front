@@ -6,6 +6,7 @@ import BoardBox from "../components/community/BoardBox";
 import Footer from "../components/common/Footer";
 import { useState } from "react";
 import PostForm from "../components/community/PostForm";
+import PostView from "../components/community/PostView";
 
 const BoardContainer = styled.div`
     display: flex;
@@ -47,11 +48,12 @@ const CommunityPage = () => {
                         면접 팁과 후기를 자유롭게 공유해봐요
                     </div>
                     <div className="board-center">
-                        {click ?
+                        <PostView />
+                        {/* {click ?
                             <PostForm isClick={isClick} />
                             :
                             <BoardBox isClick={isClick} />
-                        }
+                        } */}
                     </div>
 
                 </BoardContainer>
