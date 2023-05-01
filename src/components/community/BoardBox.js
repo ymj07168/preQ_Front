@@ -4,6 +4,7 @@ import wrtieBtnImg from "../../asset/writebtnImg.png";
 import SearchBox from "./SearchBox";
 import PostItem from "./PostItem";
 import dummy from "../../db/data.json";
+import Pagination from "./Pagination";
 
 
 const BoardWrapper = styled.div`
@@ -65,6 +66,11 @@ const BoardBox = ({ isClick }) => {
 
     const [isHover, setHover] = useState('');
 
+    // 페이지네이션
+    const [limit, setLimit] = useState(3);
+    const [page, setPage] = useState(1)
+    const offset = (page - 1) * limit;
+
     const onClick = () => {
         // 글 작성 뷰 이동
         isClick(true)
@@ -91,7 +97,7 @@ const BoardBox = ({ isClick }) => {
                     </FilterBox>
                 </BoardTop >
                 <PostList>
-                    {dummy.boarder.map(item => (
+                    {dummy.boarder.slice(offset, offset + limit).map(item => (
                         <div onMouseEnter={() => { onMouseEnter(item.id) }}>
                             <PostItem
                                 key={item.id}
@@ -104,6 +110,14 @@ const BoardBox = ({ isClick }) => {
                         </div>
                     ))}
                 </PostList>
+
+                <Pagination
+                    total={dummy.boarder.length}
+                    limit={limit}
+                    page={page}
+                    setPage={setPage}
+                />
+
             </BoardWrapper>
         </>
     )
