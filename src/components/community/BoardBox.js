@@ -67,7 +67,8 @@ const BoardBox = ({ isClick }) => {
     const [isHover, setHover] = useState('');
 
     // 페이지네이션
-    const [limit, setLimit] = useState(3);
+    // const [limit, setLimit] = useState(3);
+    const limit = 3;
     const [page, setPage] = useState(1)
     const offset = (page - 1) * limit;
 
