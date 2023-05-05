@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import StyleButton from "../common/StyleButton";
+import CommentItem from "../community/CommentItem";
 
 
 const PostViewContainer = styled.div`
@@ -88,8 +89,9 @@ const CommentBox = styled.div`
         background: #F5F6F7;
         border: 1px solid rgba(45, 57, 76, 0.1);
     }
-
 `
+
+
 const PostView = () => {
     return (
         <>
@@ -124,6 +126,11 @@ const PostView = () => {
                         <br />
                     </div>
                 </CommentBox>
+                <br />
+                <CommentItem
+                    writer="으라차차"
+                    comment="안녕하세요, 글을 너무 잘쓰셔서 좋아요 누르고 갑니다.! 화이팅"
+                />
             </PostViewContainer>
         </>
     )
