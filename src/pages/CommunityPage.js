@@ -48,12 +48,12 @@ const CommunityPage = () => {
                         면접 팁과 후기를 자유롭게 공유해봐요
                     </div>
                     <div className="board-center">
-                        <PostView />
-                        {/* {click ?
+                        {/* <PostView /> */}
+                        {click ?
                             <PostForm isClick={isClick} />
                             :
                             <BoardBox isClick={isClick} />
-                        } */}
+                        }
                     </div>
 
                 </BoardContainer>

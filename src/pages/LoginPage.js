@@ -1,4 +1,3 @@
-/*global Kakao*/
 import React from "react";
 import NavBar from "../components/common/NavBar";
 import LoginButton from "../components/common/LoginButton";
@@ -7,11 +6,17 @@ import KaKaoIcon from '../asset/kakao-icon.png';
 import Footer from "../components/common/Footer";
 import "../style/loginpage.css"
 import TopContainer from "../components/common/TopContainer";
+import { useGoogleLogin } from "@react-oauth/google";
+
 
 const { Kakao } = window;
 
-
 const LoginPage = () => {
+
+    const handleGoogleLogin = useGoogleLogin({
+        onSuccess: (codeResponse) => console.log(codeResponse),
+        flow: 'auth-code',
+    })
 
     const handleKakaoLogin = () => {
         console.log('클릭')
@@ -34,8 +39,7 @@ const LoginPage = () => {
                         Sign In
                     </div>
                     <div className="login-btns">
-
-                        <div onClick={handleKakaoLogin}>
+                        <div onClick={handleGoogleLogin}>
                             <LoginButton
                                 src={GoogleIcon}
                                 text="Google 계정으로 시작"
