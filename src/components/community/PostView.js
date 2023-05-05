@@ -14,14 +14,12 @@ const PostViewBox = styled.div`
     flex-direction: column;
     padding: 50px 120px;
     gap: 10px;
-    // width: 700px;
     background: #FFFFFF;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     .top-wrapper{
         display: flex;
         flex-direction: row;
-        // width: 500px
         padding: 5px 15px;
 
         background: #F9F8F8;
@@ -33,7 +31,6 @@ const PostViewBox = styled.div`
         font-size: 20px;
         line-height: 38px;
         color: #717171;
-        // gap: 20px;
         .writer{
             flex: auto;
         }
@@ -66,9 +63,7 @@ const PostViewBox = styled.div`
 const CommentBox = styled.div`
     display: flex;
     flex-direction: column;
-    // width: 900px;
     .comment-input{
-        // width: 143px;
         height: 70px;
         padding: 5px 10px;
         border: 1px solid rgba(45, 57, 76, 0.1);
@@ -83,29 +78,27 @@ const CommentBox = styled.div`
         display: flex;
         padding-bottom: 10px;
         padding-right: 10px;
-        // width: 800px;
         justify-content: flex-end;
-        // align-items: right;
         background: #F5F6F7;
         border: 1px solid rgba(45, 57, 76, 0.1);
     }
 `
 
 
-const PostView = () => {
+const PostView = (props) => {
     return (
         <>
             <PostViewContainer>
                 <PostViewBox>
                     <div className="top-wrapper">
-                        <div className="writer">작성자: </div>
-                        <div className="date">작성일: </div>
-                        <div className="view">조회수: </div>
+                        <div className="writer">작성자: {props.user} </div>
+                        <div className="date">작성일: {props.date}</div>
+                        <div className="view">조회수: {props.view}</div>
                     </div>
                     <br /><br /><br />
                     <div className="content-wrapper">
                         <div className="title">
-                            면접 볼 때 마스크
+                            {props.title}
                         </div>
                         <br /><br />
                         <div className="content">
