@@ -4,12 +4,16 @@ import InputBox from "../common/InputBox";
 import StyleButton from "../common/StyleButton";
 
 
+const PostFormContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+`
 const PostFormBox = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 50px 120px;
+    padding: 50px 100px;
     gap: 10px;
-    // width: 600px;
     background: #FFFFFF;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
@@ -17,7 +21,7 @@ const PostFormBox = styled.div`
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 500;
-        font-size: 30px;
+        font-size: 35px;
         line-height: 68px;
         color: #200E32;
     }
@@ -25,7 +29,6 @@ const PostFormBox = styled.div`
         display: flex;
         width: 700px;
         margin-top: 50px;
-        // height: 100px;
         justify-content: right;
         gap: 20px;
     }
@@ -41,6 +44,7 @@ const PostForm = ({ isClick }) => {
 
     return (
         <>
+            <PostFormContainer>
             <PostFormBox>
                 <div className="title-text">
                     제목
@@ -55,7 +59,8 @@ const PostForm = ({ isClick }) => {
                     <StyleButton width="140px" height="50px" size="20px">취소</StyleButton>
                     <StyleButton width="140px" height="50px" size="20px" onClick={onClick}>등록</StyleButton>
                 </div>
-            </PostFormBox>
+                </PostFormBox>
+            </PostFormContainer>
         </>
     )
 }
