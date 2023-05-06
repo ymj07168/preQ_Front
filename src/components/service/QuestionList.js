@@ -3,6 +3,7 @@ import QuestionItem from "./QuestionItem";
 import styled from "styled-components";
 import plusImg from "../../asset/plus.png";
 import dummy from "../../db/data.json";
+import { getCoverLetter } from "../../lib/api/service";
 
 const ListBox = styled.div`
     display: flex;
@@ -21,24 +22,31 @@ const ListBox = styled.div`
     .plus-button{
         border: none;
         background: none;
-        // &:hover{
-        //     border-radius: 0.3rem;
-        //     border: 2px solid black;
-        // }
+
     }
 `
 
 const QuestionList = ({ onHandleForm, onHandleQlist }) => {
 
-    const [qlist, setQList] = useState(dummy.question)
+    const [qlist, setQList] = useState([])
     const onPlusQuestion = () => {
-        setQList([...qlist, { id: qlist.length + 1, title: "", content: "" }]);
+        setQList([...qlist, { id: 10000, question: "", answer: "" }]);
 
     }
 
+    const getQlist = async () => {
+        const json = await (await getCoverLetter());
+        setQList(json.data.data)
+    };
+
+    useEffect(() => {
+        getQlist();
+    }, [])
+
     useEffect(() => {
         onHandleQlist(qlist)
-    }, [qlist])
+        console.log(qlist)
+    }, [qlist, onHandleQlist])
 
     return (
         <>
@@ -46,11 +54,11 @@ const QuestionList = ({ onHandleForm, onHandleQlist }) => {
                 <div className="question-list-title">
                     Question List
                 </div>
-                {qlist.map(item => (
-                    <div onClick={() => { onHandleForm(item.id) }} key={item.key}>
+                {qlist?.map((item, index) => (
+                    <div onClick={() => { onHandleForm(index) }} key={item.id}>
                         <QuestionItem
                             key={item.id}
-                            title={item.title}
+                            title={item.question}
                         />
                     </div>
                 ))}

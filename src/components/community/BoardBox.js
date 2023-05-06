@@ -120,7 +120,7 @@ const BoardBox = () => {
                         </BoardTop >
                         <PostList>
                             {dummy.boarder.slice(offset, offset + limit).map(item => (
-                                <div onMouseEnter={() => { onMouseEnter(item.id) }} onClick={() => { onShowDetail(item.user, item.title, item.date, item.view) }}>
+                                <div key={item.id} onMouseEnter={() => { onMouseEnter(item.id) }} onClick={() => { onShowDetail(item.user, item.title, item.date, item.view) }}>
                                     <PostItem
                                         key={item.id}
                                         user={item.user}

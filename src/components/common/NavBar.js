@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../../asset/logo.png';
+import isLogin from '../../lib/router/isLogin';
+import { removeCookie } from '../../lib/cookie';
 
 const NavContainer = styled.div`
     padding-top: 40px;
@@ -41,6 +43,18 @@ const Menu = styled.div`
         line-height: 30px;
         color: #FFFFFF;
     }
+    .logout-button{
+        border: none;
+        background: none;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 30px;
+        &:hover{
+            color: #0D2D84;
+        }
+    }
 `
 
 const LinkTo = styled(Link)`
@@ -58,6 +72,12 @@ const LinkTo = styled(Link)`
 
 
 const NavBar = () => {
+
+    const onLogout = () => {
+        removeCookie('is_login');
+        window.location.replace('/');
+    }
+
     return (
         <>
             <NavContainer>
@@ -67,7 +87,7 @@ const NavBar = () => {
                         <LinkTo to='/'>Home</LinkTo>
                         <LinkTo to='/community'>커뮤니티</LinkTo>
                         <LinkTo to='/mypage'>마이페이지</LinkTo>
-                        <LinkTo to='/login'>로그인</LinkTo>
+                        {isLogin() ? <button className='logout-button' onClick={onLogout}>로그아웃</button> : <LinkTo to='/login'>로그인</LinkTo>}
                         <Link to='/service'>
                             <button className='service-button'>질문예측서비스</button></Link>
                     </Menu >
