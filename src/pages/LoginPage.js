@@ -23,6 +23,7 @@ const LoginPage = () => {
                     console.log(res)
                     removeCookie('is_login')
                     setCookie('is_login', `${codeResponse.code}`)
+                    window.location.replace('/');
                 })
                 .catch((err) => {
                     console.log(err)
@@ -40,6 +41,7 @@ const LoginPage = () => {
                     .then((res) => {
                         console.log(res)
                         setCookie('is_login', `${res.data.accessToken}`)
+                        window.location.replace('/');
                     })
                     .catch((err) => {
                         console.log(err)
