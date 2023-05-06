@@ -9,6 +9,7 @@ import TopContainer from "../components/common/TopContainer";
 import { useGoogleLogin } from "@react-oauth/google";
 
 import { login } from "../lib/api/auth";
+import { removeCookie, setCookie } from "../lib/cookie";
 
 const { Kakao } = window;
 
@@ -20,6 +21,8 @@ const LoginPage = () => {
             login('google', codeResponse.code)
                 .then((res) => {
                     console.log(res)
+                    removeCookie('is_login')
+                    setCookie('is_login', `${codeResponse.code}`)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -36,6 +39,7 @@ const LoginPage = () => {
                 login('kakao', auth.access_token)
                     .then((res) => {
                         console.log(res)
+                        setCookie('is_login', `${res.data.accessToken}`)
                     })
                     .catch((err) => {
                         console.log(err)
