@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputBox from "../common/InputBox";
 import StyleButton from "../common/StyleButton";
-import dummy from "../../db/data.json";
-import { saveCoverLetter } from "../../lib/api/service";
+import { getPreQ, saveCoverLetter } from "../../lib/api/service";
 
 
 const InputWrapper = styled.div`
@@ -29,20 +28,25 @@ const InputTitle = styled.div`
     color: #000000;
 `
 
-const InputForm = ({ isClick, formId, qlist }) => {
+const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
 
     const [click, setClick] = useState(false)
-    const [data, setData] = useState(qlist[formId - 1])
-    const [title, setTitle] = useState(qlist[formId - 1].title)
-    const [content, setContent] = useState(qlist[formId - 1].content)
+    const [data, setData] = useState(qlist[formId])
+    const [title, setTitle] = useState(qlist[formId]?.question)
+    const [content, setContent] = useState(qlist[formId]?.answer)
 
+    console.log(title, content)
     const onClick = () => {
-        setClick(!click)
-        isClick(click)
-        console.log(title, content)
         saveCoverLetter(title, content)
             .then((res) => {
                 console.log(res)
+
+                getPreQ(res.data.data.id)
+                    .then((res) => {
+                        console.log(res);
+                        onHandleAnswer(res.data.data);
+                        isClick(true);
+                    })
             })
             .catch((err) => {
                 console.log(err)
@@ -59,10 +63,10 @@ const InputForm = ({ isClick, formId, qlist }) => {
 
 
     useEffect(() => {
-        setData(qlist[formId - 1])
-        setTitle(qlist[formId - 1].title)
-        setContent(qlist[formId - 1].content)
-    }, [formId, data, click, setTitle, setContent])
+        setData(qlist[formId])
+        setTitle(qlist[formId]?.question)
+        setContent(qlist[formId]?.answer)
+    }, [formId, data, click, setTitle, setContent, qlist])
 
 
 

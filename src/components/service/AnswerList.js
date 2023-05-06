@@ -18,14 +18,14 @@ const ListBox = styled.div`
     }
 `
 
-const AnswerList = () => {
+const AnswerList = (props) => {
     return (
         <ListBox>
             <div className="answer-text">
                 지원자님의 답변에 대한 예상 면접 질문입니다.
             </div>
-            {dummy.answer.map(item => (
-                <AnswerItem text={item.text} />
+            {props.answer.map(item => (
+                <AnswerItem text={item.question} />
             ))}
         </ListBox>
     )

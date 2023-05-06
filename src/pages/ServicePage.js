@@ -9,7 +9,7 @@ import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
-import dummy from "../db/data.json";
+import { getCoverLetter } from "../lib/api/service";
 
 const ServiceContainer = styled.div`
     display: flex;
@@ -54,21 +54,29 @@ const ServicePage = () => {
         setClick(x)
     }
 
-    const [formId, setFormId] = useState(1)
+    const [formId, setFormId] = useState(1);
 
-    const [qlist, setQList] = useState(dummy.question);
+    const [qlist, setQList] = useState([]);
 
     const onHandleQlist = (x) => {
         setQList(x)
-    }
+    };
 
     const onHandleForm = (x) => {
         setFormId(x)
+    };
+
+    const [answer, setAnswer] = useState([]);
+
+    const onHandleAnswer = (x) => {
+        setAnswer(x);
     }
+
 
     useEffect(() => {
         console.log(formId)
-    }, [formId])
+        console.log(answer)
+    }, [formId, answer])
 
     return (
         <>
@@ -76,11 +84,11 @@ const ServicePage = () => {
                 <NavBar />
                 <ServiceContainer>
                     <QuestionList onHandleForm={onHandleForm} onHandleQlist={onHandleQlist} />
-                    <InputForm isClick={isClick} formId={formId} qlist={qlist} />
+                    <InputForm isClick={isClick} formId={formId} qlist={qlist} onHandleAnswer={onHandleAnswer} />
                     {click ?
                         <div className="result-box">
                             <Chart />
-                            <AnswerList />
+                            <AnswerList answer={answer} />
                         </div> :
                         <div className="pre-box">
                             <img src={exImg} alt="준비이미지" width="450px" />
