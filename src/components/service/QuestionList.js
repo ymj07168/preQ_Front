@@ -28,16 +28,16 @@ const ListBox = styled.div`
     }
 `
 
-const QuestionList = ({ onHandleForm }) => {
+const QuestionList = ({ onHandleForm, onHandleQlist }) => {
 
     const [qlist, setQList] = useState(dummy.question)
     const onPlusQuestion = () => {
-        setQList([...qlist, { id: null, title: null, content: null }])
-    }
-    console.log(qlist)
+        setQList([...qlist, { id: qlist.length + 1, title: "", content: "" }]);
 
+    }
 
     useEffect(() => {
+        onHandleQlist(qlist)
     }, [qlist])
 
     return (
@@ -47,23 +47,13 @@ const QuestionList = ({ onHandleForm }) => {
                     Question List
                 </div>
                 {qlist.map(item => (
-                    <div onClick={() => { onHandleForm(item.id) }}>
+                    <div onClick={() => { onHandleForm(item.id) }} key={item.key}>
                         <QuestionItem
                             key={item.id}
                             title={item.title}
                         />
                     </div>
                 ))}
-                {/* {plusNum !== [] ?
-                    plusNum.map(() => (
-                        <div onClick={() => { onHandleForm(null) }}>
-                            < QuestionItem
-                                key=""
-                                title="" />
-                        </div>))
-                    :
-                    null
-                } */}
                 <br />
                 <button className="plus-button" onClick={onPlusQuestion}>
                     <img src={plusImg} alt="질문추가버튼" />
