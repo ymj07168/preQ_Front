@@ -9,6 +9,7 @@ import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
+import dummy from "../db/data.json";
 
 const ServiceContainer = styled.div`
     display: flex;
@@ -55,11 +56,18 @@ const ServicePage = () => {
 
     const [formId, setFormId] = useState(1)
 
+    const [qlist, setQList] = useState(dummy.question);
+
+    const onHandleQlist = (x) => {
+        setQList(x)
+    }
+
     const onHandleForm = (x) => {
         setFormId(x)
     }
 
     useEffect(() => {
+        console.log(formId)
     }, [formId])
 
     return (
@@ -67,8 +75,8 @@ const ServicePage = () => {
             <TopContainer color="blue" image="white">
                 <NavBar />
                 <ServiceContainer>
-                    <QuestionList onHandleForm={onHandleForm} />
-                    <InputForm isClick={isClick} formId={formId} />
+                    <QuestionList onHandleForm={onHandleForm} onHandleQlist={onHandleQlist} />
+                    <InputForm isClick={isClick} formId={formId} qlist={qlist} />
                     {click ?
                         <div className="result-box">
                             <Chart />
