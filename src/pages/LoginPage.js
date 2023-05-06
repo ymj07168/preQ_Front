@@ -8,13 +8,23 @@ import "../style/loginpage.css"
 import TopContainer from "../components/common/TopContainer";
 import { useGoogleLogin } from "@react-oauth/google";
 
+import { login } from "../lib/api/auth";
 
 const { Kakao } = window;
 
 const LoginPage = () => {
 
     const handleGoogleLogin = useGoogleLogin({
-        onSuccess: (codeResponse) => console.log(codeResponse),
+        onSuccess: (codeResponse) => {
+            console.log(codeResponse)
+            login('google', codeResponse.code)
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
         flow: 'auth-code',
     })
 
@@ -23,6 +33,13 @@ const LoginPage = () => {
         Kakao.Auth.login({
             success: auth => {
                 console.log('Login', auth)
+                login('kakao', auth.access_token)
+                    .then((res) => {
+                        console.log(res)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
             },
             fail: error => {
                 alert(JSON.stringify(error))

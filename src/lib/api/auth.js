@@ -1,6 +1,22 @@
-// const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
-// const REDIRECT_URI = 'http://localhost:3000/oauth';
+import client from "./client";
+import axios from "axios";
 
-// const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+// export const login = async (type, accessToken) => {
+//     console.log({ type, accessToken });
+//     return await client.post('/api/v1/auth/login',
+//         {
+//             type: type,
+//             accessToken: accessToken
+//         })
+// }
 
-
+export const login = async (type, accessToken) => {
+    console.log({ type: type, accessToken: accessToken })
+    const response = await axios.post('/api/v1/auth/login',
+        {
+            type: type,
+            accessToken: accessToken
+        }
+    );
+    return response.data;
+}
