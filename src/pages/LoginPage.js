@@ -9,44 +9,41 @@ import TopContainer from "../components/common/TopContainer";
 import { useGoogleLogin } from "@react-oauth/google";
 import { login } from "../lib/api/auth";
 import { setCookie } from "../lib/cookie";
-// import { OAuth2Client } from "google-auth-library";
 import axios from "axios";
-import qs from 'qs';
 
 const { Kakao } = window;
 
 const LoginPage = () => {
 
-    // const code = new URL(window.location.href).searchParams.get("code");
     const handleGoogleLogin = useGoogleLogin({
         onSuccess: (codeResponse) => {
             console.log(codeResponse)
             const getToken = async () => {
-                const payload = qs.stringify({
+                const payload = {
                     code: codeResponse.code,
                     client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
                     client_secret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
                     redirect_uri: "http://localhost:3000",
                     grant_type: "authorization_code",
-                });
-                const res = axios.post("https://oauth2.googleapis.com/token", payload);
-                console.log(res);
-                // const token = res.data.access_token
-                // console.log(token);
+                };
+                axios.post("https://oauth2.googleapis.com/token", payload)
+                    .then((res) => {
+                        console.log("access_token", res.data.access_token)
+                        login('google', res.data.access_token)
+                            .then((res) => {
+                                console.log(res)
+                                setCookie('is_login', `${res.data.access_token}`)
+                                window.location.replace('/');
+                            })
+                            .catch((err) => {
+                                console.log(err)
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
             }
             return getToken();
-
-            // const oAuth2Client = new OAuth2Client(clientId, clientSecret, "postmessage");
-            // const { tokens } = oAuth2Client.getToken(codeResponse.code)
-            // login('google', codeResponse.code)
-            //     .then((res) => {
-            //         console.log(res)
-            //         setCookie('is_login', `${codeResponse.code}`)
-            //         window.location.replace('/');
-            //     })
-            //     .catch((err) => {
-            //         console.log(err)
-            //     })
         },
         flow: 'auth-code',
     })
