@@ -1,41 +1,44 @@
 import { createAction, handleActions } from "redux-actions";
+import produce from 'immer';
+import { takeLatest } from "redux-saga/effects";
+import createRequestSaga, { createRequestActionType } from "../lib/createRequestSaga";
+import * as authAPI from '../lib/api/auth';
 
-// 예시
-const LOGIN = 'auth/LOGIN';
-const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS'
-const LOGIN_FAILURE = 'auth/LOGIN_FAILURE'
+const CHANGE_FIELD = 'auth/CHANGE_FIELD';
+const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
+const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionType(
+    'auth/LOGIN',
+);
 
-export const login = createAction(LOGIN, ({ email, password, header }) => ({
-    email,
-    password,
-    header
-}));
+
+export const login = createAction(LOGIN, ({ type, accessToken }) => ({
+    type,
+    accessToken,
+}))
+
+const loginSaga = createRequestSaga(LOGIN, authAPI.login);
+
+export function* authSaga() {
+    yield takeLatest(LOGIN, loginSaga)
+}
 
 const initialState = {
-    login: {
-        email: '',
-        password: '',
-        header: ''
-    },
     auth: null,
-    authError: null
+    authError: null,
 };
 
 const auth = handleActions(
     {
-        // 액션 타입에 따라 state 변경
-
-        // 로그인 성공
+        // 로그인
         [LOGIN_SUCCESS]: (state, { payload: auth }) => ({
             ...state,
             authError: null,
-            auth: auth
+            auth,
         }),
-        // 로그인 실패
         [LOGIN_FAILURE]: (state, { payload: error }) => ({
             ...state,
-            authError: error
-        })
+            authError: error,
+        }),
     },
     initialState
 );
