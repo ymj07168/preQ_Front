@@ -7,13 +7,23 @@ import Footer from "../components/common/Footer";
 import "../style/loginpage.css"
 import TopContainer from "../components/common/TopContainer";
 import { useGoogleLogin } from "@react-oauth/google";
-import { login } from "../lib/api/auth";
+import { login } from "../modules/auth";
 import { setCookie } from "../lib/cookie";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const { Kakao } = window;
 
-const LoginPage = () => {
+const LoginPage = ({ history }) => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { auth, authError } = useSelector(({ auth }) => ({
+        auth: auth.auth,
+        authError: auth.authError
+    }));
 
     const handleGoogleLogin = useGoogleLogin({
         onSuccess: (codeResponse) => {
@@ -28,16 +38,9 @@ const LoginPage = () => {
                 };
                 axios.post("https://oauth2.googleapis.com/token", payload)
                     .then((res) => {
-                        console.log("access_token", res.data.access_token)
-                        login('google', res.data.access_token)
-                            .then((res) => {
-                                console.log(res)
-                                setCookie('is_login', `${res.data.access_token}`)
-                                window.location.replace('/');
-                            })
-                            .catch((err) => {
-                                console.log(err)
-                            })
+                        let type = 'google';
+                        let accessToken = res.data.access_token;
+                        dispatch(login({ type, accessToken }))
                     })
                     .catch((err) => {
                         console.log(err)
@@ -52,22 +55,29 @@ const LoginPage = () => {
         console.log('클릭')
         Kakao.Auth.login({
             success: auth => {
-                console.log('Login', auth)
-                login('kakao', auth.access_token)
-                    .then((res) => {
-                        console.log(res)
-                        setCookie('is_login', `${res.data.accessToken}`)
-                        window.location.replace('/');
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+                let type = 'kakao';
+                let accessToken = auth.access_token;
+                dispatch(login({ type, accessToken }))
             },
             fail: error => {
                 alert(JSON.stringify(error))
             }
         })
     }
+
+    useEffect(() => {
+        if (authError) {
+            console.log('오류');
+            console.log(authError);
+        }
+        if (auth) {
+            console.log('성공');
+            console.log(auth)
+            setCookie('is_login', `${auth.data.accessToken}`)
+            navigate('/');
+        }
+    }, [auth, authError])
+
 
     return (
         <>
