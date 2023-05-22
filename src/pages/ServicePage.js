@@ -74,9 +74,10 @@ const ServicePage = () => {
 
 
     useEffect(() => {
+        console.log(qlist);
         console.log(formId)
         console.log(answer)
-    }, [formId, answer])
+    }, [formId, answer, qlist])
 
     return (
         <>
