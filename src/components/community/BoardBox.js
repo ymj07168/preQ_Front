@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import wrtieBtnImg from "../../asset/writebtnImg.png";
 import SearchBox from "./SearchBox";
@@ -7,6 +7,8 @@ import dummy from "../../db/data.json";
 import Pagination from "./Pagination";
 import PostView from "./PostView";
 import PostForm from "./PostForm";
+import { getCookie } from "../../lib/cookie";
+import { readAllPost } from "../../lib/api/community";
 
 
 const BoardWrapper = styled.div`
@@ -88,15 +90,50 @@ const BoardBox = () => {
         showForm(!isForm)
     }
     // 글 상세 뷰 이동
-    const onShowDetail = (user, title, date, view) => {
+    const onShowDetail = (id, user, title, date, view) => {
         showDetail(!isDetail)
-        setDetail({ user, title, date, view })
+        setDetail({ id, user, title, date, view })
     }
+
+
+    // 게시판 전체 데이터 조회
+    let config = {
+        headers: {
+            'Authorization': `Bearer ${getCookie('is_login')}`,
+            'withCredentials': true,
+        }
+    }
+
+    const [filter, setFilter] = useState("0");
+
+    const [allPost, setAllPost] = useState([])
+    const getAllPost = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        console.log(filter);
+        console.log(typeof (filter))
+        console.log(config)
+        const json = await readAllPost(filter, config);
+        // getAllPost(json.data.data);
+        setAllPost(json.data.data);
+    }
+
+    useEffect(() => {
+        getAllPost();
+        console.log(filter)
+    }, [filter]);
+
+
 
     return (
         <>
             {isDetail ?
                 <PostView
+                    id={detail.id}
                     user={detail.user}
                     date={detail.date}
                     title={detail.title}
@@ -113,13 +150,25 @@ const BoardBox = () => {
                                 <div className="write-btn-text">작성버튼</div>
                             </WriteBtn>
                             <SearchBox />
-                            <FilterBox>
-                                <option value="newest">최신순</option>
-                                <option value="viewed">조회순</option>
+                            <FilterBox name="filter" onChange={(e) => setFilter(e.target.value)}>
+                                <option value="0">최신순</option>
+                                <option value="1">조회순</option>
                             </FilterBox>
                         </BoardTop >
                         <PostList>
-                            {dummy.boarder.slice(offset, offset + limit).map(item => (
+                            {allPost.slice(offset, offset + limit).map(item => (
+                                <div key={item.id} onMouseEnter={() => { onMouseEnter(item.id) }} onClick={() => { onShowDetail(item.id, item.name, item.title, item.createdAt, item.views) }}>
+                                    <PostItem
+                                        key={item.id}
+                                        user={item.name}
+                                        title={item.title}
+                                        date={item.createdAt}
+                                        view={item.views}
+                                        isHover={isHover === item.id}
+                                    />
+                                </div>
+                            ))}
+                            {/* {dummy.boarder.slice(offset, offset + limit).map(item => (
                                 <div key={item.id} onMouseEnter={() => { onMouseEnter(item.id) }} onClick={() => { onShowDetail(item.user, item.title, item.date, item.view) }}>
                                     <PostItem
                                         key={item.id}
@@ -130,7 +179,7 @@ const BoardBox = () => {
                                         isHover={isHover === item.id}
                                     />
                                 </div>
-                            ))}
+                            ))} */}
                         </PostList>
 
                         <Pagination

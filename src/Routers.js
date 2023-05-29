@@ -25,6 +25,7 @@ const Routers = () => {
                     <Route element={<ServicePage />} path='/service' />
                 </Route>
                 <Route element={<LoginPage />} path='/login' />
+                {/* <Route element={<EditPostForm />} path='/community/edit/:id' /> */}
             </Routes>
         </BrowserRouter>
     )

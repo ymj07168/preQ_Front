@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import InputBox from "../common/InputBox";
 import StyleButton from "../common/StyleButton";
+import { addPostItem } from "../../lib/api/community";
+import { getCookie } from "../../lib/cookie";
 
 
 const PostFormContainer = styled.div`
@@ -37,28 +39,47 @@ const PostFormBox = styled.div`
 
 const PostForm = ({ isClick }) => {
 
-    const onClick = () => {
-        // 게시글 전체 조회 뷰 이동
-        isClick(false)
+    // const onClick = () => {
+    //     // 게시글 전체 조회 뷰 이동
+    //     isClick(false)
+    // }
+
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+
+    const onAddPostItem = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        await addPostItem(title, content, config)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+
     }
+
+    //value = {props.title}
+    //value = {props.content}
 
     return (
         <>
             <PostFormContainer>
-            <PostFormBox>
-                <div className="title-text">
-                    제목
-                </div>
-                <InputBox width="700px" height="60px" />
-                <br />
-                <div className="title-text">
-                    본문
-                </div>
-                <InputBox width="700px" height="500px" />
-                <div className="btn-box">
-                    <StyleButton width="140px" height="50px" size="20px">취소</StyleButton>
-                    <StyleButton width="140px" height="50px" size="20px" onClick={onClick}>등록</StyleButton>
-                </div>
+                <PostFormBox>
+                    <div className="title-text">
+                        제목
+                    </div>
+                    <InputBox width="700px" height="60px" onChange={(e) => setTitle(e.target.value)} />
+                    <br />
+                    <div className="title-text">
+                        본문
+                    </div>
+                    <InputBox width="700px" height="500px" onChange={(e) => setContent(e.target.value)} />
+                    <div className="btn-box">
+                        <StyleButton width="140px" height="50px" size="20px" onClick={() => isClick(false)}>취소</StyleButton>
+                        <StyleButton width="140px" height="50px" size="20px" onClick={onAddPostItem}>등록</StyleButton>
+                    </div>
                 </PostFormBox>
             </PostFormContainer>
         </>

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import InputBox from "../common/InputBox";
 import StyleButton from "../common/StyleButton";
 import { getPreQ, saveCoverLetter } from "../../lib/api/service";
+import { getCookie } from "../../lib/cookie";
+import { addPostItem } from "../../lib/api/community";
 
 
 const InputWrapper = styled.div`
@@ -30,6 +32,13 @@ const InputTitle = styled.div`
 
 const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
 
+    let config = {
+        headers: {
+            'Authorization': `Bearer ${getCookie('is_login')}`,
+            'withCredentials': true,
+        }
+    }
+
     const [click, setClick] = useState(false)
     const [data, setData] = useState(qlist[formId])
     const [title, setTitle] = useState(qlist[formId]?.question)
@@ -41,7 +50,7 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
             .then((res) => {
                 console.log(res)
 
-                getPreQ(res.data.data.id)
+                getPreQ(res.data.data.id, config)
                     .then((res) => {
                         console.log(res);
                         onHandleAnswer(res.data.data);
@@ -67,7 +76,6 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
         setTitle(qlist[formId]?.question)
         setContent(qlist[formId]?.answer)
     }, [formId, data, click, setTitle, setContent, qlist])
-
 
 
     return (

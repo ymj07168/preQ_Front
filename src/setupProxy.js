@@ -4,7 +4,7 @@ module.exports = (app) => {
     app.use(
         '/api',
         createProxyMiddleware({
-            target: "https://api.preq.site",
+            target: "https://www.preq.site",
             changeOrigin: true
         })
     )
