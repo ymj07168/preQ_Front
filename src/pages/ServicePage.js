@@ -9,7 +9,6 @@ import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
-import { getCoverLetter } from "../lib/api/service";
 
 const ServiceContainer = styled.div`
     display: flex;
@@ -62,6 +61,8 @@ const ServicePage = () => {
         setQList(x)
     };
 
+
+
     const onHandleForm = (x) => {
         setFormId(x)
     };
@@ -74,9 +75,10 @@ const ServicePage = () => {
 
 
     useEffect(() => {
+        console.log(qlist);
         console.log(formId)
         console.log(answer)
-    }, [formId, answer])
+    }, [formId, answer, qlist])
 
     return (
         <>

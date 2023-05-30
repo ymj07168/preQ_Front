@@ -4,23 +4,25 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: 15px;
-    padding: 5px;
-    gap: 15px;
+    padding: 20px;
     width: 426px;
     height: 72px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     border: none;
-    background-color: ${(props) => props.btncolor}
-    }
+    background-color: ${(props) => props.btncolor}}
+    
     .img{
         display: flex;
-        justify-content: flex-start;
+        // flex: auto;
     }
     .btn-text{
+        display: flex;
+        flex: auto;
+        justify-content: center;
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 600;

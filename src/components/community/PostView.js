@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import StyleButton from "../common/StyleButton";
 import CommentItem from "../community/CommentItem";
+import { getCookie } from "../../lib/cookie";
+import { readPostItem } from "../../lib/api/community";
+import { addComment } from "../../lib/api/community";
+import { useParams } from "react-router-dom";
 
 
 const PostViewContainer = styled.div`
@@ -82,48 +86,72 @@ const CommentBox = styled.div`
         background: #F5F6F7;
         border: 1px solid rgba(45, 57, 76, 0.1);
     }
+
 `
 
-
+// 게시글 상세 뷰
 const PostView = (props) => {
+
+    const { id, name, date, views, content, title, comments } = props;
+
+    const [comment, setComment] = useState('');
+
+
+    // 댓글 작성
+    const onHandleComment = (e) => {
+        setComment(e.target.value);
+    }
+    // 댓글 추가
+    const onAddComment = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        await addComment(id, comment, config)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+        setComment('');
+        window.location.replace(`/community/item/${id}`);
+    }
+
     return (
         <>
             <PostViewContainer>
                 <PostViewBox>
                     <div className="top-wrapper">
-                        <div className="writer">작성자: {props.user} </div>
-                        <div className="date">작성일: {props.date}</div>
-                        <div className="view">조회수: {props.view}</div>
+                        <div className="writer">작성자: {name} </div>
+                        <div className="date">작성일: {date}</div>
+                        <div className="view">조회수: {views}</div>
                     </div>
                     <br /><br /><br />
                     <div className="content-wrapper">
                         <div className="title">
-                            {props.title}
+                            {title}
                         </div>
                         <br /><br />
                         <div className="content">
-                            실내 마스크, 대중교통 마스크도 다 해제됐는데
-                            이런 최근 시국에 면접이 잡혔다면 마스크를 착용하실건가요??
-                            저는 아직은 사회통념상 쓰는게 좋은 선택일거라고 생각했는데, 최근 박람회 두어곳 방문해보니 면접관도 면접자도 안쓰고 있는 사람이 30%는 되는것같아 깜짝놀랐습니다.
-                            지원자 입장에서는 마스크를 쓰는게 단순 감염예방 차원을 넘어서서 심신안정 측면에서도 더 좋은데요,
-                            그럼에도 마스크를 벗는 지원자들이 꽤 있다는 점에서 마스크를 벗는것도 하나의 어필이 되는건가 의문이 들더라구요.
-                            만약 본인이 면접관이라고 가정을 한다면 마스크를 쓴 지원자 vs 마스크를 벗은 지원자 어느쪽에 표를 주시겠나요??
+                            {content}
                         </div>
                     </div>
                 </PostViewBox>
                 <br />
                 <CommentBox>
-                    <input type="text" className="comment-input" placeholder="댓글쓰기..." />
+                    <input type="text" className="comment-input" placeholder="댓글쓰기..." value={comment} onChange={onHandleComment} />
                     <div className="btn-div">
-                        <StyleButton width="150px" size="18px">입력</StyleButton>
+                        <StyleButton width="150px" size="18px" onClick={onAddComment}>입력</StyleButton>
                         <br />
                     </div>
                 </CommentBox>
                 <br />
-                <CommentItem
-                    writer="으라차차"
-                    comment="안녕하세요, 글을 너무 잘쓰셔서 좋아요 누르고 갑니다.! 화이팅"
-                />
+                {comments?.map((item) => (
+                    <CommentItem
+                        key={item.id}
+                        writer={item.name}
+                        comment={item.content}
+                    />
+                ))}
             </PostViewContainer>
         </>
     )

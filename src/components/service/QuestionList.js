@@ -4,6 +4,7 @@ import styled from "styled-components";
 import plusImg from "../../asset/plus.png";
 import dummy from "../../db/data.json";
 import { getCoverLetter } from "../../lib/api/service";
+import { getCookie } from "../../lib/cookie";
 
 const ListBox = styled.div`
     display: flex;
@@ -34,8 +35,15 @@ const QuestionList = ({ onHandleForm, onHandleQlist }) => {
 
     }
 
+    let config = {
+        headers: {
+            'Authorization': `Bearer ${getCookie('is_login')}`,
+            'withCredentials': true,
+        }
+    }
+
     const getQlist = async () => {
-        const json = await (await getCoverLetter());
+        const json = await getCoverLetter(config);
         setQList(json.data.data)
     };
 

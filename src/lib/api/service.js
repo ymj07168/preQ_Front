@@ -14,10 +14,10 @@ export const saveCoverLetter = async (question, answer) => {
     return await axios.post('/api/v1/preq', { question: question, answer: answer }, config)
 }
 
-export const getCoverLetter = () => {
-    return axios.get('/api/v1/preq/list', config)
+export const getCoverLetter = async (config) => {
+    return await axios.get('/api/v1/preq/list', config)
 }
 
-export const getPreQ = (cletterId) => {
-    return axios.get(`/api/v1/preq/${cletterId}`, config)
+export const getPreQ = async (cletterId, config) => {
+    return await axios.get(`/api/v1/preq/${cletterId}`, config)
 }
