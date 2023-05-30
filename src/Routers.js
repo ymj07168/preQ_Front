@@ -8,6 +8,8 @@ import LoginPage from "./pages/LoginPage";
 import ServicePage from "./pages/ServicePage";
 // import PublicRoute from "./lib/router/PublicRoute";
 import PrivateRoute from "./lib/router/PrivateRoute";
+import PostDetail from "./pages/PostDetail";
+import CreatePost from "./pages/CreatePost";
 
 
 const Routers = () => {
@@ -17,6 +19,15 @@ const Routers = () => {
                 <Route element={<HomePage />} path='/' exact />
                 <Route element={<PrivateRoute />} path='/' exact>
                     <Route element={<CommunityPage />} path='/community' />
+                </Route>
+                <Route element={<PrivateRoute />} path='/' exact>
+                    <Route element={<CreatePost />} path='/community/create' />
+                </Route>
+                <Route element={<PrivateRoute />} path='/' exact>
+                    <Route element={<CreatePost />} path='/community/edit/item/:id' />
+                </Route>
+                <Route element={<PrivateRoute />} path='/' exact>
+                    <Route element={<PostDetail />} path='/community/item/:id' />
                 </Route>
                 <Route element={<PrivateRoute />} path='/' exact>
                     <Route element={<MyPage />} path='/mypage' />

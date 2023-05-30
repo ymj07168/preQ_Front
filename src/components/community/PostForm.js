@@ -4,6 +4,7 @@ import InputBox from "../common/InputBox";
 import StyleButton from "../common/StyleButton";
 import { addPostItem } from "../../lib/api/community";
 import { getCookie } from "../../lib/cookie";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 const PostFormContainer = styled.div`
@@ -37,16 +38,15 @@ const PostFormBox = styled.div`
 `
 
 
-const PostForm = ({ isClick }) => {
+const PostForm = ({ isEdit }) => {
 
-    // const onClick = () => {
-    //     // 게시글 전체 조회 뷰 이동
-    //     isClick(false)
-    // }
+    const navigator = useNavigate();
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
+
+    // 게시글 생성
     const onAddPostItem = async () => {
         let config = {
             headers: {
@@ -55,13 +55,14 @@ const PostForm = ({ isClick }) => {
             }
         }
         await addPostItem(title, content, config)
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res);
+                navigator('/community');
+            })
             .catch((err) => console.log(err));
 
     }
 
-    //value = {props.title}
-    //value = {props.content}
 
     return (
         <>
@@ -77,7 +78,7 @@ const PostForm = ({ isClick }) => {
                     </div>
                     <InputBox width="700px" height="500px" onChange={(e) => setContent(e.target.value)} />
                     <div className="btn-box">
-                        <StyleButton width="140px" height="50px" size="20px" onClick={() => isClick(false)}>취소</StyleButton>
+                        <StyleButton width="140px" height="50px" size="20px" onClick={() => navigator('/community')}>취소</StyleButton>
                         <StyleButton width="140px" height="50px" size="20px" onClick={onAddPostItem}>등록</StyleButton>
                     </div>
                 </PostFormBox>

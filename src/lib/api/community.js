@@ -1,12 +1,4 @@
 import axios from "axios";
-import { getCookie } from "../cookie";
-
-let config = {
-    headers: {
-        'Authorization': `Bearer ${getCookie('is_login')}`,
-        'withCredentials': true,
-    }
-}
 
 // 게시판 글 작성
 export const addPostItem = async (title, content, config) => {

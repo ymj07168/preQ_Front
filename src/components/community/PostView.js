@@ -5,6 +5,7 @@ import CommentItem from "../community/CommentItem";
 import { getCookie } from "../../lib/cookie";
 import { readPostItem } from "../../lib/api/community";
 import { addComment } from "../../lib/api/community";
+import { useParams } from "react-router-dom";
 
 
 const PostViewContainer = styled.div`
@@ -85,36 +86,22 @@ const CommentBox = styled.div`
         background: #F5F6F7;
         border: 1px solid rgba(45, 57, 76, 0.1);
     }
+
 `
 
-
+// 게시글 상세 뷰
 const PostView = (props) => {
 
-    const [data, setData] = useState();
+    const { id, name, date, views, content, title, comments } = props;
+
     const [comment, setComment] = useState('');
-
-    const getPostItem = async () => {
-        let config = {
-            headers: {
-                'Authorization': `Bearer ${getCookie('is_login')}`,
-                'withCredentials': true,
-            }
-        }
-        const json = await readPostItem(props.id, config);
-        setData(json.data.data)
-        console.log(json.data.data)
-    }
-
-    useEffect(() => {
-        getPostItem();
-    }, []);
 
 
     // 댓글 작성
     const onHandleComment = (e) => {
         setComment(e.target.value);
     }
-
+    // 댓글 추가
     const onAddComment = async () => {
         let config = {
             headers: {
@@ -122,11 +109,11 @@ const PostView = (props) => {
                 'withCredentials': true,
             }
         }
-        await addComment(props.id, comment, config)
+        await addComment(id, comment, config)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
         setComment('');
-        window.location.replace("/community");
+        window.location.replace(`/community/item/${id}`);
     }
 
     return (
@@ -134,18 +121,18 @@ const PostView = (props) => {
             <PostViewContainer>
                 <PostViewBox>
                     <div className="top-wrapper">
-                        <div className="writer">작성자: {props.user} </div>
-                        <div className="date">작성일: {props.date}</div>
-                        <div className="view">조회수: {props.view}</div>
+                        <div className="writer">작성자: {name} </div>
+                        <div className="date">작성일: {date}</div>
+                        <div className="view">조회수: {views}</div>
                     </div>
                     <br /><br /><br />
                     <div className="content-wrapper">
                         <div className="title">
-                            {props.title}
+                            {title}
                         </div>
                         <br /><br />
                         <div className="content">
-                            {data?.content}
+                            {content}
                         </div>
                     </div>
                 </PostViewBox>
@@ -158,14 +145,13 @@ const PostView = (props) => {
                     </div>
                 </CommentBox>
                 <br />
-                {data?.comments.map((item) => (
+                {comments?.map((item) => (
                     <CommentItem
                         key={item.id}
                         writer={item.name}
                         comment={item.content}
                     />
                 ))}
-
             </PostViewContainer>
         </>
     )

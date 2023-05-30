@@ -9,8 +9,6 @@ import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
-import { getCoverLetter } from "../lib/api/service";
-import { getCookie } from "../lib/cookie";
 
 const ServiceContainer = styled.div`
     display: flex;

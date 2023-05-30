@@ -11,6 +11,7 @@ const ItemBox = styled.div`
     border: 2px solid #0D2D84;
     box-shadow: 0px 8px 24px #EBEBEB;
     border-radius: 12px;
+    margin-bottom: 10px;
     .writer{
         // display: flex;
         // align-items: center;
