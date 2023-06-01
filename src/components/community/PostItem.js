@@ -76,6 +76,8 @@ const PostItem = (props) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
+    const { id, user, title, date } = props;
+
     const openModalHandler = () => {
         // isOpen의 상태를 변경하는 메소드를 구현
         // !false -> !true -> !false
@@ -86,9 +88,9 @@ const PostItem = (props) => {
         <>
             <PostItemBox >
                 <LeftWrapper>
-                    <div className="user">{props.user}</div>
-                    <div className="title">{props.title}</div>
-                    <div className="date">{props.date}</div>
+                    <div className="user">{user}</div>
+                    <div className="title">{title}</div>
+                    <div className="date">{date}</div>
                 </LeftWrapper>
                 <RightWrapper>
                     <div className="view">조회수: {props.view}</div>
@@ -96,7 +98,7 @@ const PostItem = (props) => {
                 </RightWrapper>
             </PostItemBox >
             {isOpen ?
-                <Modal openModalHandler={openModalHandler} />
+                <Modal openModalHandler={openModalHandler} item_id={id}/>
                 : null
             }
         </>
