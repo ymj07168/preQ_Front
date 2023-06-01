@@ -9,6 +9,7 @@ import { getCookie } from "../lib/cookie";
 import { readPostItem } from "../lib/api/community";
 import { useState } from "react";
 import { useEffect } from "react";
+import StyleButton from "../components/common/StyleButton";
 
 const BoardContainer = styled.div`
     display: flex;

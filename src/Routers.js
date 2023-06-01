@@ -10,6 +10,7 @@ import ServicePage from "./pages/ServicePage";
 import PrivateRoute from "./lib/router/PrivateRoute";
 import PostDetail from "./pages/PostDetail";
 import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost";
 
 
 const Routers = () => {
@@ -24,7 +25,7 @@ const Routers = () => {
                     <Route element={<CreatePost />} path='/community/create' />
                 </Route>
                 <Route element={<PrivateRoute />} path='/' exact>
-                    <Route element={<CreatePost />} path='/community/edit/item/:id' />
+                    <Route element={<EditPost />} path='/community/edit/item/:id' />
                 </Route>
                 <Route element={<PrivateRoute />} path='/' exact>
                     <Route element={<PostDetail />} path='/community/item/:id' />
