@@ -3,9 +3,9 @@ import styled from "styled-components";
 import StyleButton from "../common/StyleButton";
 import CommentItem from "../community/CommentItem";
 import { getCookie } from "../../lib/cookie";
-import { readPostItem } from "../../lib/api/community";
+
 import { addComment } from "../../lib/api/community";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const PostViewContainer = styled.div`
@@ -62,6 +62,10 @@ const PostViewBox = styled.div`
         color: #000000;
         margin-bottom: 100px;
     }
+    .edit-btn-div{
+        display: flex;
+        justify-content: flex-end;
+    }
 `
 
 const CommentBox = styled.div`
@@ -86,13 +90,14 @@ const CommentBox = styled.div`
         background: #F5F6F7;
         border: 1px solid rgba(45, 57, 76, 0.1);
     }
-
 `
 
 // 게시글 상세 뷰
 const PostView = (props) => {
 
     const { id, name, date, views, content, title, comments } = props;
+
+    const navigator = useNavigate();
 
     const [comment, setComment] = useState('');
 
@@ -116,6 +121,17 @@ const PostView = (props) => {
         window.location.replace(`/community/item/${id}`);
     }
 
+    // 게시글 수정 페이지 이동
+    const showEditForm = () => {
+        navigator(`/community/edit/item/${id}`, {
+            state: {
+                id: id,
+                title: title,
+                content: content
+            }
+        })
+    }
+
     return (
         <>
             <PostViewContainer>
@@ -134,6 +150,9 @@ const PostView = (props) => {
                         <div className="content">
                             {content}
                         </div>
+                    </div>
+                    <div className="edit-btn-div">
+                        <StyleButton className="edit-btn" width="150px" size="18px" onClick={showEditForm}>수정하기</StyleButton>
                     </div>
                 </PostViewBox>
                 <br />

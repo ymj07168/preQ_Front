@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import NavBar from '../components/common/NavBar';
 import Footer from '../components/common/Footer';
 import PostForm from '../components/community/PostForm';
+import { useLocation } from 'react-router-dom';
+import TopContainer from '../components/common/TopContainer';
 
 const BoardContainer = styled.div`
     display: flex;
@@ -30,6 +32,11 @@ const BoardContainer = styled.div`
 
 
 const EditPost = () => {
+
+    const location = useLocation();
+    const { id, title, content } = { ...location.state };
+
+    console.log(id, title, content);
     return (
         <>
             <TopContainer color="white" image="blue">
@@ -41,6 +48,9 @@ const EditPost = () => {
                     <div className="board-center">
                         <PostForm
                             isEdit={true}
+                            id={id}
+                            preTitle={title}
+                            preContent={content}
                         />
                     </div>
                 </BoardContainer>
