@@ -1,0 +1,21 @@
+* {
+    /* font-family: "Pretendard", sans-serif; */
+    margin: 0;
+    padding: 0;
+    /* font-size: 15px; */
+    /* font-weight: 400; */
+    letter-spacing: -0.04em;
+}
+
+body {
+    margin: 0 auto;
+    padding: 0;
+    min-width: 360px;
+    max-width: 1200px;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: black;
+}

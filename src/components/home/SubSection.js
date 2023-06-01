@@ -13,7 +13,7 @@ const SectionContainer = styled.div`
     margin-right: auto;
     margin-left: auto;
     .main-block{
-        width: 1200px;
+        width: 1200px;   
     }
     .title{
         display: flex;

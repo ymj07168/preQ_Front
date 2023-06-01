@@ -12,9 +12,9 @@ const HeroContainer = styled.div`
     .mainblock{
         display: flex;
         width: 1200px;
+        align-items: center;
     }
     .textblock{
-        margin-top: 30px;
         display: flex;
         flex-direction: column;
         width: 550px;
