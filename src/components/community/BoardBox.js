@@ -130,6 +130,7 @@ const BoardBox = () => {
                         <div key={item.id} onMouseEnter={() => { onMouseEnter(item.id) }} onClick={() => navigator(`/community/item/${item.id}`)}>
                             <PostItem
                                 key={item.id}
+                                id={item.id}
                                 user={item.name}
                                 title={item.title}
                                 date={item.createdAt}

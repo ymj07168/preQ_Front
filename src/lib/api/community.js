@@ -12,7 +12,7 @@ export const editPostItem = async (id, title, content, config) => {
 }
 
 // 게시판 글 삭제
-export const deltePostItem = async (id, config) => {
+export const deletePostItem = async (id, config) => {
     return await axios.delete(`/api/v1/board/${id}`, config)
 }
 

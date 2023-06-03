@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import deleteImg from '../../asset/deleteImg.png';
+import { getCookie } from '../../lib/cookie';
+import { deletePostItem } from '../../lib/api/community';
 
 export const ModalBackdrop = styled.div`
   // Modal이 떴을 때의 배경을 깔아주는 CSS를 구현
@@ -77,12 +79,24 @@ export const ModalView = styled.div.attrs((props) => ({
     }
 `;
 
-export const Modal = ({ openModalHandler }) => {
+export const Modal = ({ openModalHandler, item_id }) => {
 
     const onCancel = () => {
         openModalHandler(false)
     }
 
+    const onDeletePost = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        await deletePostItem(item_id, config)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
+        window.location.replace(`/community`);
+    }
     return (
         <>
             <ModalBackdrop>
@@ -91,7 +105,7 @@ export const Modal = ({ openModalHandler }) => {
                     <div className='desc'>정말 삭제하시겠습니까?</div>
                     <div className='btn-group'>
                         <button className='cancel-btn' onClick={onCancel}>취소</button>
-                        <button className='delete-btn'>삭제</button>
+                        <button className='delete-btn' onClick={onDeletePost}>삭제</button>
                     </div>
                 </ModalView>
             </ModalBackdrop>
