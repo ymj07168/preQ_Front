@@ -9,13 +9,18 @@ const NavContainer = styled.div`
     padding-top: 40px;
     padding-bottom: 40px;
     background: #DBE9F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const NavBlock = styled.div`
     height : 4.5rem;
     display: fixed;
     z-index : 1000;
-    min-width: 800px;
+    // min-width: 800px;
+    min-width: 1200px;
+    max-width: 1200px;
     margin-left: 150px;
     margin-right: 150px;
     align-items : center;
