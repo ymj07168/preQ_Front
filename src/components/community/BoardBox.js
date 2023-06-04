@@ -64,7 +64,6 @@ const WriteBtn = styled.div`
     line-height: 22px;
     color: #FFFFFF;
 `
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 const BoardBox = () => {
 
