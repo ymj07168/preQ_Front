@@ -1,5 +1,11 @@
 [[redirects]]
 from = "/proxy/*"
-  to = "https://www.preq.site/:splat"  
-  status = 200
-  force = true
+to = "https://www.preq.site/:splat"  
+status = 200
+force = true
+
+[[redirects]]
+from = "/home/*"
+to = "https://preq.netlify.app/:splat" 
+status = 200
+force = true
