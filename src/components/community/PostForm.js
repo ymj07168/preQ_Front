@@ -63,7 +63,7 @@ const PostForm = (props) => {
             .then((res) => {
                 console.log(res);
                 const new_id = res.data.data.id;
-                navigator(`${PROXY}/community/item/${new_id}`);
+                navigator(`/community/item/${new_id}`);
             })
             .catch((err) => console.log(err));
     }
