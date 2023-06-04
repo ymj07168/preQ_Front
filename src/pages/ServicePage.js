@@ -9,7 +9,6 @@ import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
-import RadarChart from "../components/service/RadarChart";
 import KeywordList from "../components/service/KeywordList";
 
 const ServiceContainer = styled.div`

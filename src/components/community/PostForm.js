@@ -38,6 +38,7 @@ const PostFormBox = styled.div`
     }
 `
 
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 const PostForm = (props) => {
 
@@ -62,7 +63,7 @@ const PostForm = (props) => {
             .then((res) => {
                 console.log(res);
                 const new_id = res.data.data.id;
-                navigator(`/community/item/${new_id}`);
+                navigator(`${PROXY}/community/item/${new_id}`);
             })
             .catch((err) => console.log(err));
     }
@@ -78,7 +79,7 @@ const PostForm = (props) => {
         await editPostItem(id, title, content, config)
             .then((res) => {
                 console.log(res);
-                navigator(`/community/item/${id}`);
+                navigator(`${PROXY}/community/item/${id}`);
             })
             .catch((err) => console.log(err));
     }
@@ -98,7 +99,7 @@ const PostForm = (props) => {
                     </div>
                     <InputBox width="700px" height="500px" onChange={(e) => setContent(e.target.value)} value={content} />
                     <div className="btn-box">
-                        <StyleButton width="140px" height="50px" size="20px" onClick={isEdit ? () => navigator(`/community/item/${id}`) : () => navigator('/community')}>취소</StyleButton>
+                        <StyleButton width="140px" height="50px" size="20px" onClick={isEdit ? () => navigator(`${PROXY}/community/item/${id}`) : () => navigator(`${PROXY}/community`)}>취소</StyleButton>
                         <StyleButton width="140px" height="50px" size="20px" onClick={isEdit ? onEditPostItem : onAddPostItem}>등록</StyleButton>
                     </div>
                 </PostFormBox>

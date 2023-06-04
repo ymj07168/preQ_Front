@@ -94,6 +94,7 @@ const CommentBox = styled.div`
         border: 1px solid rgba(45, 57, 76, 0.1);
     }
 `
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 const PostView = (props) => {
 
@@ -130,7 +131,7 @@ const PostView = (props) => {
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
         setComment('');
-        window.location.replace(`/community/item/${id}`);
+        window.location.replace(`${PROXY}/community/item/${id}`);
     }
 
     // 댓글 삭제
@@ -144,7 +145,7 @@ const PostView = (props) => {
         await deleteComment(commentId, config)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
-        window.location.replace(`/community/item/${id}`);
+        window.location.replace(`${PROXY}/community/item/${id}`);
     }
 
 
