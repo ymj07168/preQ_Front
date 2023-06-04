@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import deleteImg from "../../asset/eraser.png";
+import { getCookie } from "../../lib/cookie";
 
 const ItemBox = styled.div`
     display: flex;
@@ -52,7 +53,7 @@ const CommentItem = ({ writer, comment, onClick, onMouseEnter, isHover }) => {
                 <div className="writer">{writer}</div>
                 <div className="comment">{comment}</div>
             </div>
-            {isHover ? <button className="delete-btn" onClick={onClick}><img src={deleteImg} alt="지우개이미지" /></button> : <></>}
+            {isHover & (getCookie('is_who') === writer) ? <button className="delete-btn" onClick={onClick}><img src={deleteImg} alt="지우개이미지" /></button> : <></>}
         </ItemBox>
     )
 }

@@ -108,7 +108,6 @@ const ServicePage = () => {
                             <AnswerList answer={answer?.preqList} />
                         </div> :
                         <div className="pre-box">
-                            <RadarChart />
                             <img src={exImg} alt="준비이미지" width="450px" />
                             <div className="pre-text">
                                 지원서 문항과 답변을 넣고 <br />
