@@ -64,6 +64,7 @@ const WriteBtn = styled.div`
     line-height: 22px;
     color: #FFFFFF;
 `
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 const BoardBox = () => {
 
@@ -131,7 +132,7 @@ const BoardBox = () => {
 
             <BoardWrapper>
                 <BoardTop>
-                    <WriteBtn onClick={() => navigator('/community/create')}>
+                    <WriteBtn onClick={() => navigator(`${PROXY}/community/create`)}>
                         <img src={wrtieBtnImg} alt="작성하기버튼" />
                         <div className="write-btn-text">작성하기</div>
                     </WriteBtn>
@@ -143,7 +144,7 @@ const BoardBox = () => {
                 </BoardTop >
                 <PostList>
                     {allPost.slice(offset, offset + limit).map(item => (
-                        <div key={item.id} onMouseEnter={() => { onMouseEnter(item.id) }} onClick={() => navigator(`/community/item/${item.id}`)}>
+                        <div key={item.id} onMouseEnter={() => { onMouseEnter(item.id) }} onClick={() => navigator(`${PROXY}/community/item/${item.id}`)}>
                             <PostItem
                                 key={item.id}
                                 id={item.id}
