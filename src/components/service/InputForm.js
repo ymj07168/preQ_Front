@@ -30,6 +30,7 @@ const InputTitle = styled.div`
     line-height: 48px; 
     color: #000000;
 `
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
 
 const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
 
@@ -55,7 +56,7 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
         await saveCoverLetter(title, content, preqList, keywords, abilities, config)
             .then((res) => {
                 console.log(res)
-                window.location.replace(`/service`);
+                window.location.replace(`${PROXY}/service`);
             })
             .catch((err) => {
                 console.log(err)
