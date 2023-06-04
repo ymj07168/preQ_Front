@@ -5,6 +5,6 @@ status = 200
 force = true
 
 [[redirects]]
-from = "/home/*"
+from = "/*"
 to = "/index.html" 
 status = 200
