@@ -62,7 +62,7 @@ const Footer = () => {
                     <div className="company-info">
                         <img className="company-logo" src={logo} alt="사진을 불러올 수 없음" />
                         <div className="text">
-                            Web service offering cover-letter-<br />
+                            Web service offering application<br />
                             based interview Questions
                         </div>
                     </div>
