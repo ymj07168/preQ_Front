@@ -10,6 +10,8 @@ import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
 import RadarChart from "../components/service/RadarChart";
+import KeywordList from "../components/service/KeywordList";
+
 
 const ServiceContainer = styled.div`
     display: flex;
@@ -40,9 +42,15 @@ const ServiceContainer = styled.div`
     .result-box{
         display: flex;
         flex-direction: column;
-        justify-content : center;
-        align-items: center;
+        justify-content : flex-start;
+        align-items: flex-start;
         gap: 20px;
+    }
+    .analy-box{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
     }
 `
 
@@ -54,7 +62,7 @@ const ServicePage = () => {
         setClick(x)
     }
 
-    const [formId, setFormId] = useState(1);
+    const [formId, setFormId] = useState('');
 
     const [qlist, setQList] = useState([]);
 
@@ -67,10 +75,11 @@ const ServicePage = () => {
         setFormId(x)
     };
 
-    const [answer, setAnswer] = useState([]);
+    const [answer, setAnswer] = useState('');
 
     const onHandleAnswer = (x) => {
         setAnswer(x);
+        console.log(answer);
     }
 
 
@@ -78,19 +87,26 @@ const ServicePage = () => {
         console.log(qlist);
         console.log(formId)
         console.log(answer)
+        console.log(answer?.softSkills);
+        console.log(answer?.keywordTop5);
+
     }, [formId, answer, qlist])
+
 
     return (
         <>
             <TopContainer color="blue" image="white">
                 <NavBar />
                 <ServiceContainer>
-                    <QuestionList onHandleForm={onHandleForm} onHandleQlist={onHandleQlist} />
+                    <QuestionList onHandleForm={onHandleForm} onHandleQlist={onHandleQlist} onHandleAnswer={onHandleAnswer} />
                     <InputForm isClick={isClick} formId={formId} qlist={qlist} onHandleAnswer={onHandleAnswer} />
-                    {click ?
+                    {answer ?
                         <div className="result-box">
-                            <Chart />
-                            <AnswerList answer={answer} />
+                            <div className="analy-box">
+                                <Chart answer={answer?.softSkills} />
+                                <KeywordList answer={answer?.keywordTop5} />
+                            </div>
+                            <AnswerList answer={answer?.preqList} />
                         </div> :
                         <div className="pre-box">
                             <RadarChart />

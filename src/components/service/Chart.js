@@ -8,7 +8,8 @@ import RadarChart from "./RadarChart";
 const ChartBox = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    // justify-content: center;
     .plot-text{
         font-family: 'Poppins';
         font-style: normal;
@@ -17,24 +18,21 @@ const ChartBox = styled.div`
         line-height: 45px;
         color: #000000;
     }
-    .plot-box{
-        display: flex;
-        flex-direction: row;
-    }
+    // .plot-box{
+    //     display: flex;
+    //     flex-direction: row;
+    // }
 `
 
-const Chart = () => {
+const Chart = (props) => {
     return (
         <ChartBox>
             <div className="plot-text">
-                지원자님은 긍정적 마인드가 돋보여요!
+                세부 역량
             </div>
             <div className="plot-box">
-                <Barchart />
-                <RadarChart />
-                {/* <Piechart /> */}
-                {/* <img src={barChart} alt="막대차트" width="250px" /> */}
-                {/* <img src={pieChart} alt="원형차트" width="250px" /> */}
+                {/* <Barchart /> */}
+                <RadarChart answer={props?.answer} />
             </div>
         </ChartBox>
     )

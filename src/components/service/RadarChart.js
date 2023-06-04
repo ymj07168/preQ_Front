@@ -7,33 +7,39 @@ import { ResponsiveRadar } from '@nivo/radar'
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const RadarChart = () => {
 
+const RadarChart = ({ answer }) => {
+
+    console.log(answer)
     const data = [
         {
             "skill": "열정",
-            "value": 25,
+            "value": answer[0] ? answer[0] : 0,
         },
         {
-            "skill": "협동",
-            "value": 117,
+            "skill": "협업능력",
+            "value": answer[1] ? answer[1] : 0,
         },
         {
             "skill": "도전정신",
-            "value": 88,
+            "value": answer[2],
         },
         {
             "skill": "문제해결",
-            "value": 111,
+            "value": answer[3],
         },
         {
-            "skill": "전문성",
-            "value": 40,
-        }
+            "skill": "리더십",
+            "value": answer[4],
+        },
+        {
+            "skill": "IT역량",
+            "value": answer[5] ? answer[5] : 0,
+        },
     ]
 
     return (
-        <div style={{ width: '500px', height: '300px', margin: '0 auto' }}>
+        <div style={{ width: '350px', height: '300px', margin: '0 auto' }}>
             <ResponsiveRadar
                 data={data}
                 keys={['value']}
@@ -42,7 +48,7 @@ const RadarChart = () => {
                 margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
                 // borderColor={{ from: 'color' }}
                 borderColor="blue"
-                gridLabelOffset={36}
+                gridLabelOffset={30}
                 dotSize={10}
                 dotColor={{ theme: 'background' }}
                 dotBorderWidth={2}
