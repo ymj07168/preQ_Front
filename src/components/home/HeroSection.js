@@ -64,7 +64,7 @@ const HeroSection = () => {
                 <div className="textblock">
                     <div className="title">프리큐와 함께<br />면접 준비 시작하세요!</div>
                     <div className="description">
-                        프리큐는 자기소개서를 기반으로 한 예상 면접 질문, <br /> 면접 후기와 팁을 제공하여 지원자들이 충분히 면접에 <br />대비할 수 있도록 도움을 제공하는 서비스입니다.
+                        프리큐는 지원서를 기반으로 한 예상 면접 질문, <br /> 면접 후기와 팁을 제공하여 지원자들이 충분히 면접에 <br />대비할 수 있도록 도움을 제공하는 서비스입니다.
                     </div>
                     <button className="start-button">프리큐 지금 체험해보기</button>
                 </div>
