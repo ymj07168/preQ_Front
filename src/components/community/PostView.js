@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import StyleButton from "../common/StyleButton";
 import CommentItem from "../community/CommentItem";
 import { getCookie } from "../../lib/cookie";
 
-import { addComment } from "../../lib/api/community";
+import { addComment, deleteComment } from "../../lib/api/community";
 import { useNavigate } from "react-router-dom";
 
 
@@ -92,7 +92,6 @@ const CommentBox = styled.div`
     }
 `
 
-// 게시글 상세 뷰
 const PostView = (props) => {
 
     const { id, name, date, views, content, title, comments } = props;
@@ -100,6 +99,8 @@ const PostView = (props) => {
     const navigator = useNavigate();
 
     const [comment, setComment] = useState('');
+
+    const [isHover, setHover] = useState('');
 
 
     // 댓글 작성
@@ -121,6 +122,22 @@ const PostView = (props) => {
         window.location.replace(`/community/item/${id}`);
     }
 
+    // 댓글 삭제
+    const onDeleteComment = async (commentId) => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        await deleteComment(commentId, config)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+        window.location.replace(`/community/item/${id}`);
+    }
+
+
+
     // 게시글 수정 페이지 이동
     const showEditForm = () => {
         navigator(`/community/edit/item/${id}`, {
@@ -131,6 +148,9 @@ const PostView = (props) => {
             }
         })
     }
+
+
+
 
     return (
         <>
@@ -167,8 +187,12 @@ const PostView = (props) => {
                 {comments?.map((item) => (
                     <CommentItem
                         key={item.id}
+                        id={item.id}
                         writer={item.name}
                         comment={item.content}
+                        onMouseEnter={() => { setHover(item.id); console.log(isHover) }}
+                        isHover={isHover === item.id}
+                        onClick={() => onDeleteComment(item.id)}
                     />
                 ))}
             </PostViewContainer>

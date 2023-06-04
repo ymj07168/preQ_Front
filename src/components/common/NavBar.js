@@ -9,13 +9,18 @@ const NavContainer = styled.div`
     padding-top: 40px;
     padding-bottom: 40px;
     background: #DBE9F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const NavBlock = styled.div`
     height : 4.5rem;
     display: fixed;
     z-index : 1000;
-    min-width: 800px;
+    // min-width: 800px;
+    min-width: 1200px;
+    max-width: 1200px;
     margin-left: 150px;
     margin-right: 150px;
     align-items : center;
@@ -24,6 +29,10 @@ const NavBlock = styled.div`
     .logo {
         margin-left: 30px;
         height: 60px;
+    }
+    .logo-button{
+        border: none;
+        background: none;
     }
 `
 
@@ -78,11 +87,17 @@ const NavBar = () => {
         window.location.replace('/');
     }
 
+    const moveHomePage = () => {
+        console.log('클릭');
+        window.location.replace('/');
+    }
+
     return (
         <>
             <NavContainer>
                 <NavBlock>
-                    <img className='logo' src={logo} alt='사진을 불러올 수 없음' />
+                    <button className='logo-button' onClick={(event) => { event.stopPropagation(); moveHomePage(); }}>
+                        <img className='logo' src={logo} alt='사진을 불러올 수 없음' /></button>
                     <Menu>
                         <LinkTo to='/'>Home</LinkTo>
                         <LinkTo to='/community'>커뮤니티</LinkTo>

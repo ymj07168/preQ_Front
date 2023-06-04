@@ -3,6 +3,7 @@ import styled from "styled-components";
 // import barChart from "../../asset/Section.png";
 // import pieChart from "../../asset/graph2.png";
 import Barchart from "./BarChart";
+import RadarChart from "./RadarChart";
 
 const ChartBox = styled.div`
     display: flex;
@@ -30,6 +31,7 @@ const Chart = () => {
             </div>
             <div className="plot-box">
                 <Barchart />
+                <RadarChart />
                 {/* <Piechart /> */}
                 {/* <img src={barChart} alt="막대차트" width="250px" /> */}
                 {/* <img src={pieChart} alt="원형차트" width="250px" /> */}

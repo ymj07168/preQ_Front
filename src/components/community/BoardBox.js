@@ -5,7 +5,6 @@ import SearchBox from "./SearchBox";
 import PostItem from "./PostItem";
 import dummy from "../../db/data.json";
 import Pagination from "./Pagination";
-import PostForm from "./PostForm";
 import { getCookie } from "../../lib/cookie";
 import { readAllPost, searchPost } from "../../lib/api/community";
 import { useNavigate } from "react-router-dom";

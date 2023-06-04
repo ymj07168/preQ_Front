@@ -5,7 +5,7 @@ import logo from "../../asset/logo.png"
 import githubImg from "../../asset/github-mark.png"
 
 const FooterContainer = styled.div`
-    display: flex;
+display: flex;
     justify-content: center;
     align-items: center;
     height: 300px;
@@ -62,7 +62,7 @@ const Footer = () => {
                     <div className="company-info">
                         <img className="company-logo" src={logo} alt="사진을 불러올 수 없음" />
                         <div className="text">
-                            Web service offering cover-letter-<br />
+                            Web service offering application<br />
                             based interview Questions
                         </div>
                     </div>
@@ -71,7 +71,7 @@ const Footer = () => {
                             Contact Us
                         </div>
                         <div className="github-link">
-                            <img className="github-img" src={githubImg} alt="사진을 불러올 수 없음" />
+                            <img className="github-img" src={githubImg} alt="깃헙로고" />
                             <Link className="github-link" to='https://github.com/pre-Q'>
                                 github.com
                             </Link>

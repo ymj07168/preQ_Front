@@ -13,7 +13,7 @@ const SectionContainer = styled.div`
     margin-right: auto;
     margin-left: auto;
     .main-block{
-        width: 1200px;
+        width: 1200px;   
     }
     .title{
         display: flex;
@@ -58,7 +58,7 @@ const SubSection = () => {
                             <CardItem
                                 src={card1}
                                 label='Question Prediction'
-                                text='자기소개서 기반 예상 면접 질문 제공'
+                                text='지원서 기반 예상 면접 질문 제공'
                             />
                             <CardItem
                                 src={card2}

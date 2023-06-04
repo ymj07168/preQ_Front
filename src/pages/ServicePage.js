@@ -9,6 +9,7 @@ import exImg from "../asset/example.png";
 import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
+import RadarChart from "../components/service/RadarChart";
 
 const ServiceContainer = styled.div`
     display: flex;
@@ -62,7 +63,6 @@ const ServicePage = () => {
     };
 
 
-
     const onHandleForm = (x) => {
         setFormId(x)
     };
@@ -93,6 +93,7 @@ const ServicePage = () => {
                             <AnswerList answer={answer} />
                         </div> :
                         <div className="pre-box">
+                            <RadarChart />
                             <img src={exImg} alt="준비이미지" width="450px" />
                             <div className="pre-text">
                                 지원서 문항과 답변을 넣고 <br />

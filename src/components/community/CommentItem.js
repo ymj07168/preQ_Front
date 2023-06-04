@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import deleteImg from "../../asset/eraser.png";
 
 const ItemBox = styled.div`
     display: flex;
-    flex-direction: column;
-    // justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px 20px;
     height: 70px;
     background: rgba(255, 255, 255, 0.8);
@@ -34,14 +36,23 @@ const ItemBox = styled.div`
         line-height: 16px;
         color: #000000;     
     }
+    .delete-btn{
+        margin-right: 20px;
+        border: none;
+        background: transparent;
+    }
 `
 
-const CommentItem = ({ writer, comment }) => {
+const CommentItem = ({ writer, comment, onClick, onMouseEnter, isHover }) => {
+
 
     return (
-        <ItemBox>
-            <div className="writer">{writer}</div>
-            <div className="comment">{comment}</div>
+        <ItemBox onMouseEnter={onMouseEnter}>
+            <div>
+                <div className="writer">{writer}</div>
+                <div className="comment">{comment}</div>
+            </div>
+            {isHover ? <button className="delete-btn" onClick={onClick}><img src={deleteImg} alt="지우개이미지" /></button> : <></>}
         </ItemBox>
     )
 }

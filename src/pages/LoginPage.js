@@ -25,6 +25,8 @@ const LoginPage = ({ history }) => {
         authError: auth.authError
     }));
 
+    const PROXY = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'https://preq.netlify.app';
+
     const handleGoogleLogin = useGoogleLogin({
         onSuccess: (codeResponse) => {
             console.log(codeResponse)
@@ -33,7 +35,7 @@ const LoginPage = ({ history }) => {
                     code: codeResponse.code,
                     client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
                     client_secret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
-                    redirect_uri: "http://localhost:3000",
+                    redirect_uri: PROXY,
                     grant_type: "authorization_code",
                 };
                 axios.post("https://oauth2.googleapis.com/token", payload)
