@@ -186,8 +186,12 @@ const PostView = (props) => {
                         </div>
                     </div>
                     <div className="edit-delete-btn-div">
-                        <StyleButton className="edit-btn" width="100px" size="18px" onClick={showEditForm}>수정</StyleButton>
-                        <StyleButton className="edit-btn" width="100px" size="18px" onClick={() => openModalHandler()}>삭제</StyleButton>
+                        {getCookie('is_who') === name
+                            ?
+                            <><StyleButton className="edit-btn" width="100px" size="18px" onClick={showEditForm}>수정</StyleButton>
+                                <StyleButton className="edit-btn" width="100px" size="18px" onClick={() => openModalHandler()}>삭제</StyleButton></>
+                            :
+                            <></>}
                     </div>
                 </PostViewBox>
                 <br />
