@@ -7,6 +7,7 @@ import { ResponsiveRadar } from '@nivo/radar'
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
+
 const RadarChart = ({ answer }) => {
 
     console.log(answer)
