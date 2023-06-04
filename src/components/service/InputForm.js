@@ -47,7 +47,7 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
     console.log(config);
     console.log(title, content)
     const onClick = () => {
-        saveCoverLetter(title, content)
+        saveCoverLetter(title, content, config)
             .then((res) => {
                 console.log(res)
 

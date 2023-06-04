@@ -10,7 +10,7 @@ let config = {
     }
 }
 
-export const saveCoverLetter = async (question, answer) => {
+export const saveCoverLetter = async (question, answer, config) => {
     console.log({ question, answer })
     console.log(getCookie('is_login'))
     return await axios.post(`${PROXY}/api/v1/preq`, { question: question, answer: answer }, config)
