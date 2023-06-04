@@ -56,8 +56,7 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
         await saveCoverLetter(title, content, preqList, keywords, abilities, config)
             .then((res) => {
                 console.log(res)
-                // window.location.replace(`${PROXY}/service`);
-                window.location.reload();
+                window.location.replace(`${PROXY}/service`);
             })
             .catch((err) => {
                 console.log(err)

@@ -6,6 +6,5 @@ force = true
 
 [[redirects]]
 from = "/home/*"
-to = "https://preq.netlify.app/:splat" 
+to = "/index.html" 
 status = 200
-force = true

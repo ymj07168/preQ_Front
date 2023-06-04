@@ -131,8 +131,7 @@ const PostView = (props) => {
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
         setComment('');
-        // window.location.replace(`${PROXY}/community/item/${id}`);
-        window.location.reload();
+        window.location.replace(`${PROXY}/community/item/${id}`);
     }
 
     // 댓글 삭제
@@ -146,8 +145,7 @@ const PostView = (props) => {
         await deleteComment(commentId, config)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
-        // window.location.replace(`${PROXY}/community/item/${id}`);
-        window.location.reload();
+        window.location.replace(`${PROXY}/community/item/${id}`);
     }
 
 
