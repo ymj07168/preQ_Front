@@ -74,8 +74,9 @@ const LoginPage = ({ history }) => {
         }
         if (auth) {
             console.log('성공');
-            console.log(auth)
-            setCookie('is_login', `${auth.data.accessToken}`)
+            console.log(auth);
+            setCookie('is_login', `${auth.data.accessToken}`);
+            setCookie('is_who', `${auth.data.name}`);
             navigate('/');
         }
     }, [auth, authError])
