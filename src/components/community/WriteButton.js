@@ -20,12 +20,13 @@ const WriteBtn = styled.div`
     color: #FFFFFF;
 `
 
-const WriteButton = () => {
+const WriteButton = (props) => {
+    const { text, onClick } = props;
     return (
         <>
-            <WriteBtn>
+            <WriteBtn onClick={onClick}>
                 <img src={wrtieBtnImg} alt="작성하기버튼" />
-                <div className="write-btn-text">작성버튼</div>
+                <div className="write-btn-text">{text}</div>
             </WriteBtn>
         </>
     )

@@ -6,6 +6,8 @@ import { getCookie } from "../../lib/cookie";
 
 import { addComment, deleteComment } from "../../lib/api/community";
 import { useNavigate } from "react-router-dom";
+import WriteButton from "./WriteButton";
+import { Modal } from "../common/Modal";
 
 
 const PostViewContainer = styled.div`
@@ -62,9 +64,10 @@ const PostViewBox = styled.div`
         color: #000000;
         margin-bottom: 100px;
     }
-    .edit-btn-div{
+    .edit-delete-btn-div{
         display: flex;
         justify-content: flex-end;
+        gap: 5px;
     }
 `
 
@@ -102,6 +105,14 @@ const PostView = (props) => {
 
     const [isHover, setHover] = useState('');
 
+    // 게시글 삭제 창 보여주기
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModalHandler = () => {
+        // isOpen의 상태를 변경하는 메소드를 구현
+        // !false -> !true -> !false
+        setIsOpen(!isOpen)
+    };
 
     // 댓글 작성
     const onHandleComment = (e) => {
@@ -155,6 +166,8 @@ const PostView = (props) => {
     return (
         <>
             <PostViewContainer>
+                <WriteButton text="목록으로" onClick={() => navigator(`/community`)} />
+                <br />
                 <PostViewBox>
                     <div className="top-wrapper">
                         <div className="writer">작성자: {name} </div>
@@ -171,8 +184,9 @@ const PostView = (props) => {
                             {content}
                         </div>
                     </div>
-                    <div className="edit-btn-div">
-                        <StyleButton className="edit-btn" width="150px" size="18px" onClick={showEditForm}>수정하기</StyleButton>
+                    <div className="edit-delete-btn-div">
+                        <StyleButton className="edit-btn" width="100px" size="18px" onClick={showEditForm}>수정</StyleButton>
+                        <StyleButton className="edit-btn" width="100px" size="18px" onClick={() => openModalHandler()}>삭제</StyleButton>
                     </div>
                 </PostViewBox>
                 <br />
@@ -195,7 +209,12 @@ const PostView = (props) => {
                         onClick={() => onDeleteComment(item.id)}
                     />
                 ))}
-            </PostViewContainer>
+            </PostViewContainer >
+            {
+                isOpen ?
+                    <Modal openModalHandler={openModalHandler} item_id={id} />
+                    : null
+            }
         </>
     )
 }
