@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputBox from "../common/InputBox";
 import StyleButton from "../common/StyleButton";
-import { getPreQ, saveCoverLetter } from "../../lib/api/service";
+import { getPreQ, getPreQItem, saveCoverLetter } from "../../lib/api/service";
 import { getCookie } from "../../lib/cookie";
 import { addPostItem } from "../../lib/api/community";
 
 
 const InputWrapper = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     .submit-button{
@@ -17,6 +17,7 @@ const InputWrapper = styled.div`
         width: 600px;
         justify-content: flex-end;
         align-items: flex-end;
+        gap: 5px;
     }
 `
 
@@ -32,35 +33,53 @@ const InputTitle = styled.div`
 
 const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
 
-    let config = {
-        headers: {
-            'Authorization': `Bearer ${getCookie('is_login')}`,
-            'withCredentials': true,
+    const [click, setClick] = useState(false);
+    const [data, setData] = useState(qlist[formId]);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+
+    const [preqList, setpreqList] = useState('');
+    const [keywords, setKeywords] = useState('');
+    const [abilities, setAbilities] = useState('');
+
+    console.log(title, content);
+
+    // 질문 저장
+    const onSaveForm = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
         }
-    }
-
-    const [click, setClick] = useState(false)
-    const [data, setData] = useState(qlist[formId])
-    const [title, setTitle] = useState(qlist[formId]?.question)
-    const [content, setContent] = useState(qlist[formId]?.answer)
-
-    console.log(config);
-    console.log(title, content)
-    const onClick = () => {
-        saveCoverLetter(title, content, config)
+        await saveCoverLetter(title, content, preqList, keywords, abilities, config)
             .then((res) => {
                 console.log(res)
-
-                getPreQ(res.data.data.id, config)
-                    .then((res) => {
-                        console.log(res);
-                        onHandleAnswer(res.data.data);
-                        isClick(true);
-                    })
+                window.location.replace(`/service`);
             })
             .catch((err) => {
                 console.log(err)
             });
+    }
+
+    // 질문 답변 조회 (핵심 역량, 키워드, 예상 면접 질문 리스트)
+    const onGeneratePreQ = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        await getPreQ(title, content, config)
+            .then((res) => {
+                console.log(res);
+                console.log(res.data.data);
+                onHandleAnswer(res.data.data);
+                setpreqList(res.data.data.preqList);
+                setKeywords(res.data.data.keywordTop5);
+                setAbilities(res.data.data.softSkills);
+                isClick(true);
+            })
     }
 
     const HandleTitleChange = (e) => {
@@ -71,11 +90,41 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
         setContent(e.target.value);
     }
 
+    // 질문 클릭시 상세 조회
+    const getQuestionDetail = async (cletterId) => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        await getPreQItem(cletterId, config)
+            .then((res) => {
+                console.log(res)
+                setTitle(res.data.data?.question);
+                setContent(res.data.data?.answer);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+
+    useEffect(() => {
+        console.log(formId);
+        if (formId !== '') {
+            getQuestionDetail(formId);
+        }
+        else {
+            setTitle('');
+            setContent('');
+        }
+    }, [formId])
+
 
     useEffect(() => {
         setData(qlist[formId])
-        setTitle(qlist[formId]?.question)
-        setContent(qlist[formId]?.answer)
+        // setTitle(qlist[formId]?.question)
+        // setContent(qlist[formId]?.answer)
     }, [formId, data, click, setTitle, setContent, qlist])
 
 
@@ -83,13 +132,14 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
         <>
             <InputWrapper>
                 <InputTitle>Enter Question</InputTitle>
-                <InputBox onChange={HandleTitleChange} width="600px" height='50px' value={formId !== "" ? title : ""} />
+                <InputBox onChange={HandleTitleChange} width="600px" height='50px' value={title} />
                 <br /><br />
                 <InputTitle>Enter Answer</InputTitle>
-                <InputBox onChange={HandleContentChange} width="600px" height="640px" value={formId !== "" ? content : ""} />
+                <InputBox onChange={HandleContentChange} width="600px" height="640px" value={content} />
                 <br />
                 <div className="submit-button">
-                    <StyleButton width="195px" height="53px" size="22px" onClick={onClick}>Generate</StyleButton>
+                    {click && title ? <StyleButton width="195px" height="53px" size="22px" onClick={onSaveForm}>Save</StyleButton> : <></>}
+                    <StyleButton width="195px" height="53px" size="22px" onClick={() => { onGeneratePreQ(); setClick(true); }}>Generate</StyleButton>
                 </div>
             </InputWrapper>
         </>

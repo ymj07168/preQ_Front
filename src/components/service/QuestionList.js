@@ -3,7 +3,7 @@ import QuestionItem from "./QuestionItem";
 import styled from "styled-components";
 import plusImg from "../../asset/plus.png";
 import dummy from "../../db/data.json";
-import { getCoverLetter } from "../../lib/api/service";
+import { getCoverLetter, getPreQItem } from "../../lib/api/service";
 import { getCookie } from "../../lib/cookie";
 
 const ListBox = styled.div`
@@ -27,22 +27,25 @@ const ListBox = styled.div`
     }
 `
 
-const QuestionList = ({ onHandleForm, onHandleQlist }) => {
+const QuestionList = ({ onHandleForm, onHandleQlist, onHandleAnswer }) => {
 
-    const [qlist, setQList] = useState([])
+    const [qlist, setQList] = useState([]);
     const onPlusQuestion = () => {
-        setQList([...qlist, { id: 10000, question: "", answer: "" }]);
+        setQList([...qlist, { id: '', question: "", answer: "" }]);
 
     }
 
-    let config = {
-        headers: {
-            'Authorization': `Bearer ${getCookie('is_login')}`,
-            'withCredentials': true,
-        }
-    }
+    const [formId, setFormId] = useState('')
 
+
+    // 질문 리스트 전체 조회
     const getQlist = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
         const json = await getCoverLetter(config);
         setQList(json.data.data)
     };
@@ -56,6 +59,33 @@ const QuestionList = ({ onHandleForm, onHandleQlist }) => {
         console.log(qlist)
     }, [qlist, onHandleQlist])
 
+
+    // 질문 상세 조회
+    const getQuestionDetail = async (cletterId) => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        await getPreQItem(cletterId, config)
+            .then((res) => {
+                console.log(res);
+                onHandleAnswer(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+
+    useEffect(() => {
+        console.log(formId);
+        if (formId !== '') {
+            getQuestionDetail(formId);
+        }
+    }, [formId])
+
+
     return (
         <>
             <ListBox>
@@ -63,7 +93,7 @@ const QuestionList = ({ onHandleForm, onHandleQlist }) => {
                     Question List
                 </div>
                 {qlist?.map((item, index) => (
-                    <div onClick={() => { onHandleForm(index) }} key={item.id}>
+                    <div onClick={() => { console.log(item.id); onHandleForm(item.id); setFormId(item.id); }} key={item.id}>
                         <QuestionItem
                             key={item.id}
                             title={item.question}
