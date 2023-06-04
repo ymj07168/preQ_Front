@@ -44,6 +44,7 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
     const [title, setTitle] = useState(qlist[formId]?.question)
     const [content, setContent] = useState(qlist[formId]?.answer)
 
+    console.log(config);
     console.log(title, content)
     const onClick = () => {
         saveCoverLetter(title, content)
