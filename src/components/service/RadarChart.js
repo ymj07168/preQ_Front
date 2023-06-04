@@ -14,27 +14,27 @@ const RadarChart = ({ answer }) => {
     const data = [
         {
             "skill": "열정",
-            "value": answer[0] ? answer[0] : 0,
+            "value": answer ? (answer[0] ? answer[0] : 0) : 0,
         },
         {
             "skill": "협업능력",
-            "value": answer[1] ? answer[1] : 0,
+            "value": answer ? (answer[1] ? answer[1] : 0) : 0,
         },
         {
             "skill": "도전정신",
-            "value": answer[2],
+            "value": answer ? (answer[2] ? answer[2] : 0) : 0,
         },
         {
             "skill": "문제해결",
-            "value": answer[3],
+            "value": answer ? (answer[3] ? answer[3] : 0) : 0,
         },
         {
             "skill": "리더십",
-            "value": answer[4],
+            "value": answer ? (answer[4] ? answer[4] : 0) : 0,
         },
         {
             "skill": "IT역량",
-            "value": answer[5] ? answer[5] : 0,
+            "value": answer ? (answer[5] ? answer[5] : 0) : 0,
         },
     ]
 
