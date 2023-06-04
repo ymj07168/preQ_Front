@@ -7,7 +7,7 @@ import dummy from "../../db/data.json";
 import Pagination from "./Pagination";
 import PostForm from "./PostForm";
 import { getCookie } from "../../lib/cookie";
-import { readAllPost } from "../../lib/api/community";
+import { readAllPost, searchPost } from "../../lib/api/community";
 import { useNavigate } from "react-router-dom";
 
 
@@ -75,13 +75,12 @@ const BoardBox = () => {
 
     // 페이지네이션
     // const [limit, setLimit] = useState(3);
-    const limit = 3;
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(5);
     const offset = (page - 1) * limit;
 
     // 마우스 호버시 삭제, 수정 버튼 생성
     const onMouseEnter = (x) => {
-        console.log(x)
         setHover(x)
     }
 
@@ -97,11 +96,9 @@ const BoardBox = () => {
                 'withCredentials': true,
             }
         }
-        console.log(filter);
-        console.log(typeof (filter))
-        console.log(config)
         const json = await readAllPost(filter, config);
         setAllPost(json.data.data);
+        console.log('전체 게시글', allPost);
     }
 
     useEffect(() => {
@@ -109,6 +106,25 @@ const BoardBox = () => {
         console.log(filter)
     }, [filter]);
 
+
+    const [keyword, setKeyword] = useState('');
+
+    // 게시글 검색
+    const onSearch = async () => {
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${getCookie('is_login')}`,
+                'withCredentials': true,
+            }
+        }
+        const json = await searchPost(keyword, config);
+        setAllPost(json.data.data);
+        console.log('검색', allPost);
+    }
+
+    const onHandleKeyword = async (e) => {
+        setKeyword(e.target.value);
+    }
 
 
     return (
@@ -118,9 +134,9 @@ const BoardBox = () => {
                 <BoardTop>
                     <WriteBtn onClick={() => navigator('/community/create')}>
                         <img src={wrtieBtnImg} alt="작성하기버튼" />
-                        <div className="write-btn-text">작성버튼</div>
+                        <div className="write-btn-text">작성하기</div>
                     </WriteBtn>
-                    <SearchBox />
+                    <SearchBox onClick={onSearch} onChange={onHandleKeyword} value={keyword} />
                     <FilterBox name="filter" onChange={(e) => setFilter(e.target.value)}>
                         <option value="0">최신순</option>
                         <option value="1">조회순</option>
@@ -144,7 +160,7 @@ const BoardBox = () => {
                 </PostList>
 
                 <Pagination
-                    total={dummy.boarder.length}
+                    total={allPost.length}
                     limit={limit}
                     page={page}
                     setPage={setPage}

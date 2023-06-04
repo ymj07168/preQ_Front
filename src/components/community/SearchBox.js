@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import searchImg from "../../asset/searchImg.png";
+import { searchPost } from "../../lib/api/community";
 
 
 const SearchWrapper = styled.div`
@@ -27,12 +28,15 @@ const SearchWrapper = styled.div`
     }
 `
 
-const SearchBox = () => {
+const SearchBox = (props) => {
+
+    const { value, onClick, onChange } = props;
+
     return (
         <>
             <SearchWrapper>
-                <input type="text" className="input-box" />
-                <button className="search-btn"><img src={searchImg} alt="검색버튼이미지" /></button>
+                <input type="text" className="input-box" onChange={onChange} value={value} />
+                <button className="search-btn" onClick={onClick}><img src={searchImg} alt="검색버튼이미지" /></button>
             </SearchWrapper>
         </>
     )
