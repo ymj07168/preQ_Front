@@ -30,6 +30,10 @@ const NavBlock = styled.div`
         margin-left: 30px;
         height: 60px;
     }
+    .logo-button{
+        border: none;
+        background: none;
+    }
 `
 
 const Menu = styled.div`
@@ -83,11 +87,17 @@ const NavBar = () => {
         window.location.replace('/');
     }
 
+    const moveHomePage = () => {
+        console.log('클릭');
+        window.location.replace('/');
+    }
+
     return (
         <>
             <NavContainer>
                 <NavBlock>
-                    <img className='logo' src={logo} alt='사진을 불러올 수 없음' />
+                    <button className='logo-button' onClick={(event) => { event.stopPropagation(); moveHomePage(); }}>
+                        <img className='logo' src={logo} alt='사진을 불러올 수 없음' /></button>
                     <Menu>
                         <LinkTo to='/'>Home</LinkTo>
                         <LinkTo to='/community'>커뮤니티</LinkTo>
