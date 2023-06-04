@@ -92,13 +92,13 @@ const PostItem = (props) => {
                     <div className="title">{title}</div>
                     <div className="date">{date}</div>
                 </LeftWrapper>
-                <RightWrapper>
+                {/* <RightWrapper>
                     <div className="view">조회수: {props.view}</div>
                     {props.isHover ? <div className="btn-group"><StyleButton width="70px" height="45px" size="15px" onClick={(event) => { event.stopPropagation(); openModalHandler(); }}>삭제</StyleButton></div> : <div></div>}
-                </RightWrapper>
+                </RightWrapper> */}
             </PostItemBox >
             {isOpen ?
-                <Modal openModalHandler={openModalHandler} item_id={id}/>
+                <Modal openModalHandler={openModalHandler} item_id={id} />
                 : null
             }
         </>
