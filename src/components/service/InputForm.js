@@ -32,7 +32,7 @@ const InputTitle = styled.div`
 `
 const PROXY = window.location.hostname === 'localhost' ? '' : '/home';
 
-const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
+const InputForm = ({ isClick, formId, qlist, onHandleAnswer, onHandleLoading }) => {
 
     const [click, setClick] = useState(false);
     const [data, setData] = useState(qlist[formId]);
@@ -65,6 +65,7 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
 
     // 질문 답변 조회 (핵심 역량, 키워드, 예상 면접 질문 리스트)
     const onGeneratePreQ = async () => {
+        onHandleLoading(true);
         let config = {
             headers: {
                 'Authorization': `Bearer ${getCookie('is_login')}`,
@@ -81,6 +82,7 @@ const InputForm = ({ isClick, formId, qlist, onHandleAnswer }) => {
                 setAbilities(res.data.data.softSkills);
                 isClick(true);
             })
+        onHandleLoading(false);
     }
 
     const HandleTitleChange = (e) => {

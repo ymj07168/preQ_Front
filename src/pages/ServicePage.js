@@ -10,6 +10,7 @@ import AnswerList from "../components/service/AnswerList";
 import Chart from "../components/service/Chart";
 import { useState } from "react";
 import KeywordList from "../components/service/KeywordList";
+import Spinner from "../asset/spinner.gif";
 
 
 const ServiceContainer = styled.div`
@@ -57,6 +58,8 @@ const ServicePage = () => {
 
     const [click, setClick] = useState(false);
 
+    const [loading, setLoading] = useState(false);
+
     const isClick = (x) => {
         setClick(x)
     }
@@ -64,6 +67,11 @@ const ServicePage = () => {
     const [formId, setFormId] = useState('');
 
     const [qlist, setQList] = useState([]);
+
+    const onHandleLoading = (x) => {
+        setLoading(x);
+        console.log(loading);
+    };
 
     const onHandleQlist = (x) => {
         setQList(x)
@@ -84,11 +92,10 @@ const ServicePage = () => {
 
     useEffect(() => {
         console.log(qlist);
-        console.log(formId)
-        console.log(answer)
+        console.log(formId);
+        console.log(answer);
         console.log(answer?.softSkills);
         console.log(answer?.keywordTop5);
-
     }, [formId, answer, qlist])
 
 
@@ -98,21 +105,43 @@ const ServicePage = () => {
                 <NavBar />
                 <ServiceContainer>
                     <QuestionList onHandleForm={onHandleForm} onHandleQlist={onHandleQlist} onHandleAnswer={onHandleAnswer} />
-                    <InputForm isClick={isClick} formId={formId} qlist={qlist} onHandleAnswer={onHandleAnswer} />
+                    <InputForm isClick={isClick} formId={formId} qlist={qlist} onHandleAnswer={onHandleAnswer} onHandleLoading={onHandleLoading} />
                     {answer ?
-                        <div className="result-box">
-                            <div className="analy-box">
-                                <Chart answer={answer?.softSkills} />
-                                <KeywordList answer={answer?.keywordTop5} />
-                            </div>
-                            <AnswerList answer={answer?.preqList} />
-                        </div> :
+                        <>
+                            {loading ?
+                                <div className="pre-box">
+                                    <img src={Spinner} alt='로딩중' width="20%" />
+                                    <div className="pre-text">
+                                        잠시만 기다려주세요!
+                                    </div>
+                                </div>
+                                :
+                                <div className="result-box">
+                                    <div className="analy-box">
+                                        <Chart answer={answer?.softSkills} />
+                                        <KeywordList answer={answer?.keywordTop5} />
+                                    </div>
+                                    <AnswerList answer={answer?.preqList} />
+                                </div>
+                            }
+                        </>
+                        :
                         <div className="pre-box">
-                            <img src={exImg} alt="준비이미지" width="450px" />
-                            <div className="pre-text">
-                                지원서 문항과 답변을 넣고 <br />
-                                예상 면접 질문을 생성해보세요!
-                            </div>
+                            {loading ?
+                                <>
+                                    <img src={Spinner} alt='로딩중' width="20%" />
+                                    <div className="pre-text">
+                                        잠시만 기다려주세요!
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <img src={exImg} alt="준비이미지" width="450px" />
+                                    <div className="pre-text">
+                                        지원서 문항과 답변을 넣고 <br />
+                                        예상 면접 질문을 생성해보세요!
+                                    </div>
+                                </>}
                         </div>
                     }
                 </ServiceContainer>
