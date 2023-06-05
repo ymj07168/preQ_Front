@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import mainImg from "../../asset/mainImg.png";
+import mainImg from "../../asset/mainImg.svg";
 import { useNavigate } from "react-router";
 
 const HeroContainer = styled.div`
@@ -53,7 +53,7 @@ const HeroContainer = styled.div`
         color: #FFFFFF;
     }
     img{
-        width: 700px;
+        width: 750px;
     }
 `
 
