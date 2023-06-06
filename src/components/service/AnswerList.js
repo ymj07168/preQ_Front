@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import AnswerItem from "./AnswerItem";
-import dummy from "../../db/data.json";
 
 const ListBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     .answer-text{
         font-family: 'Poppins';
         font-style: normal;
@@ -15,6 +14,8 @@ const ListBox = styled.div`
         font-size: 25px;
         line-height: 45px;
         color: #000000;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 `
 
