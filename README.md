@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+## 지원서 기반 예상 면접 질문 제공 웹사이트, 프리큐👩‍💻
+### 1️⃣ 프로젝트 목적  
+일반적인 면접 질문이 아닌 지원서 기반 개인 맞춤 질문은 인터넷 검색만으로 대비하기 어려운 문제점이 존재합니다.  
+프리큐 서비스를 통해 지원서 기반 예상 면접 질문을 제공하고, 주요 키워드와 세부 역량을 분석함으로써 지원자들의 면접 대비에 도움을 제공하고자 합니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 2️⃣ 주요 기능
+1. **예상 면접 질문 제공**
+   - GPT-3.5 API
+3. **주요 키워드 및 세부 역량 분석**
+   - KKMA를 이용해 지원자의 답변 내용에서 필요한 형태소(보통 명사, 고유 명사, 동사, 형용사) 추출
+   - 주요 키워드 추출 : TF-IDF를 이용해 단어의 중요도 계산하여 주요 키워드 TOP 5 추출
+   - 세부 역량 분석 : 세부 역량 카테고리별 단어 사전 구축 후 각 카테고리에 해당하는 단어 빈도 수 계산
+5. **면접 팁, 후기 공유 게시판**
+   - 특정 기간 동안 대화를 하지 않았을 경우 푸시 알림 혹은 보호자에게 문자 전송
 
-## Available Scripts
+### 3️⃣ 사용 기술
+![image](https://github.com/ymj07168/preQ_Front/assets/89841486/665cc0da-d56a-4552-b62a-0bc32e187e07)
 
-In the project directory, you can run:
+### 4️⃣ 1분 시연 영상
+https://github.com/ymj07168/preQ_Front/assets/89841486/9c38b855-5d92-4c75-9bb5-2d878152a7a9
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!--
 
-### `npm test`
+**Here are some ideas to get you started:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🙋‍♀️ A short introduction - what is your organization all about?
+🌈 Contribution guidelines - how can the community get involved?
+👩‍💻 Useful resources - where can the community find your docs? Is there anything else the community should know?
+🍿 Fun facts - what does your team eat for breakfast?
+🧙 Remember, you can do mighty things with the power of [Markdown](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+-->
