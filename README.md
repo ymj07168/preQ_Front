@@ -16,8 +16,7 @@
 ![image](https://github.com/ymj07168/preQ_Front/assets/89841486/665cc0da-d56a-4552-b62a-0bc32e187e07)
 
 ### 4️⃣ 1분 시연 영상
-https://github.com/ymj07168/preQ_Front/assets/89841486/9c38b855-5d92-4c75-9bb5-2d878152a7a9
-
+https://github.com/ymj07168/preQ_Front/assets/89841486/5c3cc549-f6e6-413b-a2ef-58d4741e74de
 
 
 <!--
